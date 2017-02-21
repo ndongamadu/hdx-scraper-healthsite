@@ -1,0 +1,24 @@
+CRITICAL - 2017-02-21 13:18:53 - hdx.facades.scraperwiki - Failed when trying to create Health facilities in Africa! (POST)
+Traceback (most recent call last):
+  File "/Users/amadu/.virtualenvs/hdx-scraper-healthsite/lib/python3.5/site-packages/hdx/data/hdxobject.py", line 250, in _write_to_hdx
+    'auth': Configuration.read()._get_credentials()})
+  File "/Users/amadu/.virtualenvs/hdx-scraper-healthsite/lib/python3.5/site-packages/ckanapi/remoteckan.py", line 86, in call_action
+    return reverse_apicontroller_action(url, status, response)
+  File "/Users/amadu/.virtualenvs/hdx-scraper-healthsite/lib/python3.5/site-packages/ckanapi/common.py", line 128, in reverse_apicontroller_action
+    raise NotAuthorized(err)
+ckanapi.errors.NotAuthorized: <unprintable NotAuthorized object>
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/amadu/.virtualenvs/hdx-scraper-healthsite/lib/python3.5/site-packages/hdx/facades/scraperwiki.py", line 38, in facade
+    projectmainfn()
+  File "run.py", line 35, in main
+    dataset.create_in_hdx()
+  File "/Users/amadu/.virtualenvs/hdx-scraper-healthsite/lib/python3.5/site-packages/hdx/data/dataset.py", line 457, in create_in_hdx
+    self._save_to_hdx('create', 'name')
+  File "/Users/amadu/.virtualenvs/hdx-scraper-healthsite/lib/python3.5/site-packages/hdx/data/hdxobject.py", line 269, in _save_to_hdx
+    result = self._write_to_hdx(action, self.data, id_field_name, file_to_upload)
+  File "/Users/amadu/.virtualenvs/hdx-scraper-healthsite/lib/python3.5/site-packages/hdx/data/hdxobject.py", line 252, in _write_to_hdx
+    raise HDXError('Failed when trying to %s %s! (POST)' % (action, self.data[id_field_name])) from e
+hdx.data.hdxobject.HDXError: Failed when trying to create Health facilities in Africa! (POST)
