@@ -23,9 +23,19 @@ def getDataByPage(pageNum,url):
     return data
 
 #recupere depuis des coord lat,long,min,max
-#Dakar extent : westlimit=-17.557354; southlimit=14.644711; eastlimit=-17.103138; northlimit=14.890378
-def getDataFromBbox(left,rigth,top,bottom,url):
+def getBboxData(left,bottom,rigth,top,url):
     parametres ={'extent':str(left)+','+str(rigth)+','+str(top)+','+str(bottom),'format':'geojson'}
+    data=[]
+    try:
+        response = requests.get(url,params=parametres)
+        data = json.loads(response.text)
+    except Exception as e:
+        print(e)
+
+    return data
+
+def getDataByLoc(loc, url):
+    parametres = {'extent':loc,'format':'geojson'}
     data=[]
     try:
         response = requests.get(url,params=parametres)

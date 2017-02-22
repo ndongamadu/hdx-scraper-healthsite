@@ -23,7 +23,7 @@ from hdx.configuration import Configuration
 
 def main():
     '''Generate dataset and create it in HDX'''
-    conf = Configuration(hdx_site='test', hdx_keyfile ='.hdxkey',hdx_read_only=True, project_config_dict={})
+    conf = Configuration(hdx_site='test')
     dataset = generate_dataset(conf)
     attr = {'name','title','author'}
 
