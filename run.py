@@ -25,13 +25,6 @@ def main():
     '''Generate dataset and create it in HDX'''
     conf = Configuration(hdx_site='test')
     dataset = generate_dataset(conf)
-    attr = {'name','title','author'}
-
-    for i in attr :
-        print(dataset[i])
-    # print('nom du dataset:')
-    # print (dataset['name'])
-    # dataset.update_from_yaml('config/hdx_dataset_static.yml')
     dataset.create_in_hdx()
 
 if __name__ == '__main__':
