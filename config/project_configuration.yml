@@ -1,2 +1,4 @@
-base_url: "https://healthsites.io/api/v1/healthsites/facilities?"
+base_url: "https://healthsites.io/"
+api: "api/v1/healthsites/facilities"
 SEN_bbox: "-17.557354,14.644711,-17.103138,14.890378"
+data_folder: "data/"

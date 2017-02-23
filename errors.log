@@ -1,17 +1,24 @@
-CRITICAL - 2017-02-22 21:00:38 - hdx.facades.scraperwiki - too many values to unpack (expected 2)
+CRITICAL - 2017-02-23 04:53:44 - hdx.facades.scraperwiki - Failed when trying to create Health facilities in Africa! (POST)
+Traceback (most recent call last):
+  File "/Users/amadu/.virtualenvs/hdx-scraper-healthsite/lib/python3.5/site-packages/hdx/data/hdxobject.py", line 250, in _write_to_hdx
+    'auth': Configuration.read()._get_credentials()})
+  File "/Users/amadu/.virtualenvs/hdx-scraper-healthsite/lib/python3.5/site-packages/ckanapi/remoteckan.py", line 86, in call_action
+    return reverse_apicontroller_action(url, status, response)
+  File "/Users/amadu/.virtualenvs/hdx-scraper-healthsite/lib/python3.5/site-packages/ckanapi/common.py", line 128, in reverse_apicontroller_action
+    raise NotAuthorized(err)
+ckanapi.errors.NotAuthorized: <unprintable NotAuthorized object>
+
+The above exception was the direct cause of the following exception:
+
 Traceback (most recent call last):
   File "/Users/amadu/.virtualenvs/hdx-scraper-healthsite/lib/python3.5/site-packages/hdx/facades/scraperwiki.py", line 38, in facade
     projectmainfn()
-  File "run.py", line 27, in main
-    dataset = generate_dataset(conf)
-  File "/Users/amadu/Dev/hdx_api/hdx-scraper-healthsite/healthsite.py", line 34, in generate_dataset
-    resource = Resource(sen_resource)
-  File "/Users/amadu/.virtualenvs/hdx-scraper-healthsite/lib/python3.5/site-packages/hdx/data/resource.py", line 29, in __init__
-    super(Resource, self).__init__(initial_data)
-  File "/Users/amadu/.virtualenvs/hdx-scraper-healthsite/lib/python3.5/site-packages/hdx/data/hdxobject.py", line 47, in __init__
-    super(HDXObject, self).__init__(initial_data)
-  File "/Users/amadu/.virtualenvs/hdx-scraper-healthsite/lib/python3.5/collections/__init__.py", line 960, in __init__
-    self.update(dict)
-  File "/Users/amadu/.virtualenvs/hdx-scraper-healthsite/bin/../lib/python3.5/_collections_abc.py", line 778, in update
-    for key, value in other:
-ValueError: too many values to unpack (expected 2)
+  File "run.py", line 28, in main
+    dataset.create_in_hdx()
+  File "/Users/amadu/.virtualenvs/hdx-scraper-healthsite/lib/python3.5/site-packages/hdx/data/dataset.py", line 457, in create_in_hdx
+    self._save_to_hdx('create', 'name')
+  File "/Users/amadu/.virtualenvs/hdx-scraper-healthsite/lib/python3.5/site-packages/hdx/data/hdxobject.py", line 269, in _save_to_hdx
+    result = self._write_to_hdx(action, self.data, id_field_name, file_to_upload)
+  File "/Users/amadu/.virtualenvs/hdx-scraper-healthsite/lib/python3.5/site-packages/hdx/data/hdxobject.py", line 252, in _write_to_hdx
+    raise HDXError('Failed when trying to %s %s! (POST)' % (action, self.data[id_field_name])) from e
+hdx.data.hdxobject.HDXError: Failed when trying to create Health facilities in Africa! (POST)
