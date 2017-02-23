@@ -23,9 +23,13 @@ from hdx.configuration import Configuration
 
 def main():
     '''Generate dataset and create it in HDX'''
-    conf = Configuration(hdx_site='test')
+    conf = Configuration()
     dataset = generate_dataset(conf)
     dataset.create_in_hdx()
+    # try:
+    #     dataset.create_in_hdx()
+    # except Exception as e:
+    #     print(e)
 
 if __name__ == '__main__':
-    facade(main, hdx_site='test')
+    facade(main, hdx_site='feature')
