@@ -1,4 +1,4 @@
-CRITICAL - 2017-02-23 05:29:49 - hdx.facades.scraperwiki - Failed when trying to create Health facilities in Africa! (POST)
+CRITICAL - 2017-02-23 14:52:03 - hdx.facades.scraperwiki - Failed when trying to create Health facilities in Africa! (POST)
 Traceback (most recent call last):
   File "/Users/amadu/.virtualenvs/hdx-scraper-healthsite/lib/python3.5/site-packages/hdx/data/hdxobject.py", line 250, in _write_to_hdx
     'auth': Configuration.read()._get_credentials()})

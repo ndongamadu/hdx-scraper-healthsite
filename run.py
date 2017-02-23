@@ -32,4 +32,4 @@ def main():
     #     print(e)
 
 if __name__ == '__main__':
-    facade(main, hdx_site='feature')
+    facade(main, hdx_site='test')

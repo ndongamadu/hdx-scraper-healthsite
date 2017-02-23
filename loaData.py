@@ -44,3 +44,6 @@ def getDataByLoc(loc, url):
         print(e)
 
     return data
+
+
+def getAllPageData(pageNum,url):
