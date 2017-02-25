@@ -25,6 +25,7 @@ def main():
     '''Generate dataset and create it in HDX'''
     conf = Configuration()
     dataset = generate_dataset(conf)
+    dataset.update_from_yaml()
     dataset.create_in_hdx()
     # try:
     #     dataset.create_in_hdx()

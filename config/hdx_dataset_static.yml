@@ -1,16 +1,17 @@
-name: "Health facilities in Africa"
-title: "Health facilities in Africa by healthsite"
 owner_org: "healthsites"
 author: "Healthsites"
 notes: "nothing for now"
+groups: []
 author_email: "info.africa@acleddata.com"
 maintainer: "hdx-amadou"
 license_id: "cc-by-sa"
 subnational: 1  # has to be 0 or 1. Default 1 for ACLED.
 caveats: "updated from hdx python librairy"
 methodology_other: "updated using the healthsites API"
-dataset_source: "healthsites - OSM"
-package_creator: ""
+methodology: "API"
+dataset_source: "healthsites"
+package_creator: "Amadou"
 private: False  # has to be True or False
 url: ~
 state: "active"  # always "active".
+data_update_frequency: "Every day"

@@ -12,28 +12,31 @@ logger = logging.getLogger(__name__)
 
 def generate_dataset(configuration):
 
-    name = "sen-healthfacilities"
     url = configuration['base_url']+configuration['api']
-    data = loaData.getDataByLoc(configuration['SEN_bbox'],url)
-    loaData.writeData(data,name)
+    # loaData.writeData(url)
 
+    name = 'Africa health facilities'
+    title = 'Africa health facilities data'
+    slugified_name = slugify(name).lower()
     dataset = Dataset(configuration, {
-        })
 
+    })
+    dataset['name'] = slugified_name
+    dataset['title'] = title
     date = time.strftime("%d/%m/%Y")
     dataset['dataset_date'] = date
-    dataset.update_from_yaml()
 
+    rName = "sen-healthfacilities"
     resource = Resource()
-    resource['name'] = name
+    resource['name'] = rName
     resource['format'] = 'geojson'
     resource['url'] = url
     resource['description'] = configuration['base_url']
     resource['url_type'] = 'api'
     resource['resource_type'] = 'api'
-    resource.set_file_to_upload(configuration['data_folder']+name+'.geojson')
+    resource.set_file_to_upload(configuration['data_folder']+'sen-healthfacilities.geojson')
 
-    resource.check_required_fields()
+    # resource.check_required_fields()
     dataset.add_update_resource(resource)
 
     return dataset
