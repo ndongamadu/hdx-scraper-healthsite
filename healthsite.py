@@ -31,7 +31,7 @@ def generate_dataset(configuration):
     resource['description'] = configuration['base_url']
     resource['url_type'] = 'api'
     resource['resource_type'] = 'api'
-    resource.set_file_to_upload(configuration['data_folder']+name+'geojson')
+    resource.set_file_to_upload(configuration['data_folder']+name+'.geojson')
 
     resource.check_required_fields()
     dataset.add_update_resource(resource)

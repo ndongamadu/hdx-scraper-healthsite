@@ -11,7 +11,7 @@ def writeData(data,fileName):
 
 #recupere depuis l\API de healthsites une donnee se touvant sur pageNum
 def getDataByPage(pageNum,url):
-    parametres = {'page':pageNum,'format':'json'}
+    parametres = {'page':pageNum,'format':'geojson'}
     data = []
     try:
         response = requests.get(url,params=parametres)
@@ -58,15 +58,15 @@ def getAllHealthSitePageData(lien):
 
     pageNumber = pn['hsPageNumber']
 
-    with open('data/healthsites.json') as ad:
+    with open('data/healthsites.geojson') as ad:
         allData = json.load(ad)
 
     if pageNumber == 0:
         nbPage = 1
         dataPage = getDataByPage(1,lien)
-        while dataPage!= []:
-            for dt in dataPage:
-                allData.append(str(dt))
+        while dataPage['features']!= []:
+            for dt in dataPage['features']:
+                allData['features'].append(dt)
             nbPage +=1
             dataPage = getDataByPage(nbPage,lien)
 
@@ -76,9 +76,9 @@ def getAllHealthSitePageData(lien):
         print('file exists')
         print(pageNumber)
         dataPageElse = getDataByPage(pageNumber,lien)
-        while dataPageElse != []:
-            for dt in dataPageElse:
-                allData.append(dt)
+        while dataPageElse['features'] != []:
+            for dt in dataPageElse['features']:
+                allData['features'].append(dt)
             pageNumber+=1
             dataPageElse = getDataByPage(pageNumber,lien)
 
@@ -88,7 +88,7 @@ def getAllHealthSitePageData(lien):
     with open('config/pagenumber.json','w') as f:
         json.dump(pn,f)
 
-    with open('data/healthsites.json','w') as fd:
+    with open('data/healthsites.geojson','w') as fd:
         json.dump(allData,fd)
 
     writeData(allData,"healthsites")

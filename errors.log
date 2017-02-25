@@ -1,12 +1,57 @@
-CRITICAL - 2017-02-23 14:52:03 - hdx.facades.scraperwiki - Failed when trying to create Health facilities in Africa! (POST)
+CRITICAL - 2017-02-24 15:24:06 - hdx.facades.scraperwiki - Failed when trying to read: id=Health facilities in Africa! (POST)
 Traceback (most recent call last):
-  File "/Users/amadu/.virtualenvs/hdx-scraper-healthsite/lib/python3.5/site-packages/hdx/data/hdxobject.py", line 250, in _write_to_hdx
+  File "/Users/amadu/.virtualenvs/hdx-scraper-healthsite/lib/python3.5/site-packages/requests/packages/urllib3/connection.py", line 141, in _new_conn
+    (self.host, self.port), self.timeout, **extra_kw)
+  File "/Users/amadu/.virtualenvs/hdx-scraper-healthsite/lib/python3.5/site-packages/requests/packages/urllib3/util/connection.py", line 83, in create_connection
+    raise err
+  File "/Users/amadu/.virtualenvs/hdx-scraper-healthsite/lib/python3.5/site-packages/requests/packages/urllib3/util/connection.py", line 73, in create_connection
+    sock.connect(sa)
+ConnectionRefusedError: [Errno 61] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/amadu/.virtualenvs/hdx-scraper-healthsite/lib/python3.5/site-packages/requests/packages/urllib3/connectionpool.py", line 600, in urlopen
+    chunked=chunked)
+  File "/Users/amadu/.virtualenvs/hdx-scraper-healthsite/lib/python3.5/site-packages/requests/packages/urllib3/connectionpool.py", line 345, in _make_request
+    self._validate_conn(conn)
+  File "/Users/amadu/.virtualenvs/hdx-scraper-healthsite/lib/python3.5/site-packages/requests/packages/urllib3/connectionpool.py", line 844, in _validate_conn
+    conn.connect()
+  File "/Users/amadu/.virtualenvs/hdx-scraper-healthsite/lib/python3.5/site-packages/requests/packages/urllib3/connection.py", line 284, in connect
+    conn = self._new_conn()
+  File "/Users/amadu/.virtualenvs/hdx-scraper-healthsite/lib/python3.5/site-packages/requests/packages/urllib3/connection.py", line 150, in _new_conn
+    self, "Failed to establish a new connection: %s" % e)
+requests.packages.urllib3.exceptions.NewConnectionError: <requests.packages.urllib3.connection.VerifiedHTTPSConnection object at 0x106278d68>: Failed to establish a new connection: [Errno 61] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/amadu/.virtualenvs/hdx-scraper-healthsite/lib/python3.5/site-packages/requests/adapters.py", line 423, in send
+    timeout=timeout
+  File "/Users/amadu/.virtualenvs/hdx-scraper-healthsite/lib/python3.5/site-packages/requests/packages/urllib3/connectionpool.py", line 649, in urlopen
+    _stacktrace=sys.exc_info()[2])
+  File "/Users/amadu/.virtualenvs/hdx-scraper-healthsite/lib/python3.5/site-packages/requests/packages/urllib3/util/retry.py", line 376, in increment
+    raise MaxRetryError(_pool, url, error or ResponseError(cause))
+requests.packages.urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='test-data.humdata.org', port=443): Max retries exceeded with url: /api/action/package_show (Caused by NewConnectionError('<requests.packages.urllib3.connection.VerifiedHTTPSConnection object at 0x106278d68>: Failed to establish a new connection: [Errno 61] Connection refused',))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/amadu/.virtualenvs/hdx-scraper-healthsite/lib/python3.5/site-packages/hdx/data/hdxobject.py", line 104, in _read_from_hdx
     'auth': Configuration.read()._get_credentials()})
-  File "/Users/amadu/.virtualenvs/hdx-scraper-healthsite/lib/python3.5/site-packages/ckanapi/remoteckan.py", line 86, in call_action
-    return reverse_apicontroller_action(url, status, response)
-  File "/Users/amadu/.virtualenvs/hdx-scraper-healthsite/lib/python3.5/site-packages/ckanapi/common.py", line 128, in reverse_apicontroller_action
-    raise NotAuthorized(err)
-ckanapi.errors.NotAuthorized: <unprintable NotAuthorized object>
+  File "/Users/amadu/.virtualenvs/hdx-scraper-healthsite/lib/python3.5/site-packages/ckanapi/remoteckan.py", line 85, in call_action
+    status, response = self._request_fn(url, data, headers, files, requests_kwargs)
+  File "/Users/amadu/.virtualenvs/hdx-scraper-healthsite/lib/python3.5/site-packages/ckanapi/remoteckan.py", line 90, in _request_fn
+    allow_redirects=False, **requests_kwargs)
+  File "/Users/amadu/.virtualenvs/hdx-scraper-healthsite/lib/python3.5/site-packages/requests/sessions.py", line 535, in post
+    return self.request('POST', url, data=data, json=json, **kwargs)
+  File "/Users/amadu/.virtualenvs/hdx-scraper-healthsite/lib/python3.5/site-packages/requests/sessions.py", line 488, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/Users/amadu/.virtualenvs/hdx-scraper-healthsite/lib/python3.5/site-packages/requests/sessions.py", line 609, in send
+    r = adapter.send(request, **kwargs)
+  File "/Users/amadu/.virtualenvs/hdx-scraper-healthsite/lib/python3.5/site-packages/requests/adapters.py", line 487, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPSConnectionPool(host='test-data.humdata.org', port=443): Max retries exceeded with url: /api/action/package_show (Caused by NewConnectionError('<requests.packages.urllib3.connection.VerifiedHTTPSConnection object at 0x106278d68>: Failed to establish a new connection: [Errno 61] Connection refused',))
 
 The above exception was the direct cause of the following exception:
 
@@ -15,10 +60,12 @@ Traceback (most recent call last):
     projectmainfn()
   File "run.py", line 28, in main
     dataset.create_in_hdx()
-  File "/Users/amadu/.virtualenvs/hdx-scraper-healthsite/lib/python3.5/site-packages/hdx/data/dataset.py", line 457, in create_in_hdx
-    self._save_to_hdx('create', 'name')
-  File "/Users/amadu/.virtualenvs/hdx-scraper-healthsite/lib/python3.5/site-packages/hdx/data/hdxobject.py", line 269, in _save_to_hdx
-    result = self._write_to_hdx(action, self.data, id_field_name, file_to_upload)
-  File "/Users/amadu/.virtualenvs/hdx-scraper-healthsite/lib/python3.5/site-packages/hdx/data/hdxobject.py", line 252, in _write_to_hdx
-    raise HDXError('Failed when trying to %s %s! (POST)' % (action, self.data[id_field_name])) from e
-hdx.data.hdxobject.HDXError: Failed when trying to create Health facilities in Africa! (POST)
+  File "/Users/amadu/.virtualenvs/hdx-scraper-healthsite/lib/python3.5/site-packages/hdx/data/dataset.py", line 443, in create_in_hdx
+    if self._dataset_load_from_hdx(self.data['name']):
+  File "/Users/amadu/.virtualenvs/hdx-scraper-healthsite/lib/python3.5/site-packages/hdx/data/dataset.py", line 316, in _dataset_load_from_hdx
+    if not self._load_from_hdx('dataset', id_or_name):
+  File "/Users/amadu/.virtualenvs/hdx-scraper-healthsite/lib/python3.5/site-packages/hdx/data/hdxobject.py", line 121, in _load_from_hdx
+    success, result = self._read_from_hdx(object_type, id_field)
+  File "/Users/amadu/.virtualenvs/hdx-scraper-healthsite/lib/python3.5/site-packages/hdx/data/hdxobject.py", line 109, in _read_from_hdx
+    raise HDXError('Failed when trying to read: %s=%s! (POST)' % (fieldname, value)) from e
+hdx.data.hdxobject.HDXError: Failed when trying to read: id=Health facilities in Africa! (POST)

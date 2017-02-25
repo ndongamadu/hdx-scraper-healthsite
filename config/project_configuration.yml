@@ -1,4 +1,4 @@
-  SEN_bbox: "-17.557354,14.644711,-17.103138,14.890378"
-  api: "api/v1/healthsites/facilities"
-  base_url: "https://healthsites.io/"
-  data_folder: "data/"
+SEN_bbox: "-17.557354,14.644711,-17.103138,14.890378"
+api: "api/v1/healthsites/facilities"
+base_url: "https://healthsites.io/"
+data_folder: "data/"
