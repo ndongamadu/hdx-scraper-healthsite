@@ -29,4 +29,4 @@ def main():
 
 
 if __name__ == '__main__':
-    facade(main, hdx_site='feature')
+    facade(main, hdx_site='prod')

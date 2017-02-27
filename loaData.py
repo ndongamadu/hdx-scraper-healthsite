@@ -61,6 +61,7 @@ def getAllHealthSitePageData(lien):
         nbPage = 1
         dataPage = getDataByPage(1,lien)
         while dataPage['features']!= []:
+            print('<---page numero %s' %nbPage)
             for dt in dataPage['features']:
                 allData['features'].append(dt)
             nbPage +=1
@@ -85,5 +86,5 @@ def getAllHealthSitePageData(lien):
     with open('data/healthsites.geojson','w') as fd:
         json.dump(allData,fd)
 
-    writeData(allData,"healthsites")
+    writeData(allData,"healthfacilities")
     print('------ done ----')
