@@ -44,11 +44,6 @@ def getDataByLoc(loc, url):
 
     return data
 
-def merge(json1,json2):
-    for dt in json2:
-        json1.append(dt)
-    print('page appended to!')
-
 def getAllHealthSitePageData(lien):
     pn = {}
     allData = []
@@ -62,6 +57,7 @@ def getAllHealthSitePageData(lien):
         allData = json.load(ad)
 
     if pageNumber == 0:
+        allData = {"type": "FeatureCollection", "features": []}
         nbPage = 1
         dataPage = getDataByPage(1,lien)
         while dataPage['features']!= []:
@@ -73,8 +69,6 @@ def getAllHealthSitePageData(lien):
         pageNumber = nbPage+1
 
     else:
-        print('file exists')
-        print(pageNumber)
         dataPageElse = getDataByPage(pageNumber,lien)
         while dataPageElse['features'] != []:
             for dt in dataPageElse['features']:

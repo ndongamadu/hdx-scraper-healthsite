@@ -13,7 +13,7 @@ logger = logging.getLogger(__name__)
 def generate_dataset(configuration):
 
     url = configuration['base_url']+configuration['api']
-    # loaData.writeData(url)
+    loaData.writeData(url)
 
     name = 'Africa health facilities'
     title = 'Africa health facilities data'
@@ -25,6 +25,7 @@ def generate_dataset(configuration):
     dataset['title'] = title
     date = time.strftime("%d/%m/%Y")
     dataset['dataset_date'] = date
+    dataset.add_continent_location('AF')
 
     rName = "sen-healthfacilities"
     resource = Resource()
@@ -36,7 +37,6 @@ def generate_dataset(configuration):
     resource['resource_type'] = 'api'
     resource.set_file_to_upload(configuration['data_folder']+'sen-healthfacilities.geojson')
 
-    # resource.check_required_fields()
     dataset.add_update_resource(resource)
 
     return dataset
