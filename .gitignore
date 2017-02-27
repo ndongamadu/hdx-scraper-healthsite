@@ -2,3 +2,6 @@ __pycache__
 healthsiteTest.py
 test.py
 *.pyc
+npm-debug.log
+.DS_Store
+data/*
