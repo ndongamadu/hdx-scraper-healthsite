@@ -1,16 +1,16 @@
 owner_org: "healthsites"
 author: "Healthsites"
-notes: "nothing for now"
-author_email: "info.africa@acleddata.com"
+notes: "This data set shows the list of operating health facilities. Attributes included: Name,Nature of Facility, Activities, Lat, Long"
+author_email: "contact@healthsites.org"
 maintainer: "hdx-amadou"
 license_id: "cc-by-sa"
 subnational: 1  # has to be 0 or 1. Default 1 for ACLED.
-caveats: "updated from hdx python librairy"
-methodology_other: "updated using the healthsites API"
-methodology: "API"
-dataset_source: "healthsites"
+caveats: " "
+methodology_other: " "
+methodology: "Social Media and institutional sharing"
+dataset_source: "Global Healthsites Mapping Project"
 package_creator: "Amadou"
-private: False  # has to be True or False
+private: True  # has to be True or False
 url: ~
 state: "active"  # always "active".
 data_update_frequency: "Every day"
