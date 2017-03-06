@@ -5,3 +5,4 @@ test.py
 npm-debug.log
 .DS_Store
 data/*
+test-csv.py

@@ -23,31 +23,38 @@ from hdx.configuration import Configuration
 def main():
     '''Generate dataset and create it in HDX'''
     conf = Configuration()
+    # countries = {
+    #         'Benin': "BEN",
+    #         'Burkina Faso': "BFA",
+    #         'Ivory-coast': "CIV",
+    #         'Ghana': "GHA",
+    #         'Guinea': "GIN",
+    #         'Gambia': "GMB",
+    #         'Guinea-Bissau': "GNB",
+    #         'Liberia': "LBR",
+    #         'Mali': "MLI",
+    #         'Mauritania': "MRT",
+    #         'Niger': "NER",
+    #         'Nigeria': "NGA",
+    #         'Senegal': "SEN",
+    #         'Sierra Leone': "SLE",
+    #         'Togo': "TGO"
+    # }
     countries = {
             'Benin': "BEN",
             'Burkina Faso': "BFA",
             'Ivory-coast': "CIV",
-            'Ghana': "GHA",
-            'Guinea': "GIN",
-            'Gambia': "GMB",
-            'Guinea-Bissau': "GNB",
-            'Liberia': "LBR",
-            'Mali': "MLI",
-            'Mauritania': "MRT",
-            'Niger': "NER",
-            'Nigeria': "NGA",
-            'Senegal': "SEN",
-            'Sierra Leone': "SLE",
-            'Togo': "TGO"
+            'Ghana': "GHA"
     }
 
     for pays in countries:
         dataset = generate_dataset(conf,pays)
         dataset.update_from_yaml()
         dataset.add_country_location(countries[pays])
-        # dataset.create_in_hdx()
+        dataset.set_expected_update_frequency('Every day')
+        dataset.create_in_hdx()
         print('dataset ajoute !')
 
 
 if __name__ == '__main__':
-    facade(main, hdx_site='prod')
+    facade(main, hdx_site='feature')
