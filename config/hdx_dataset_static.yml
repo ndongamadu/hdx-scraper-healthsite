@@ -1,16 +1,16 @@
 owner_org: "healthsites"
 author: "Healthsites"
-notes: "This data set shows the list of operating health facilities. Attributes included: Name,Nature of Facility, Activities, Lat, Long"
+notes: "This dataset shows the list of operating health facilities. Attributes included: Name,Nature of Facility, Activities, Lat, Long"
 author_email: "contact@healthsites.org"
 maintainer: "hdx-amadou"
-license_id: "cc-by-sa"
+license_id: "Open Database Licence (ODC-ODbL)"
 subnational: 1  # has to be 0 or 1. Default 1 for ACLED.
-caveats: " "
+caveats: "Read the Healthsites concept note http://bit.ly/2jkk5PA"
 methodology_other: " "
 methodology: "Social Media and institutional sharing"
 dataset_source: "Global Healthsites Mapping Project"
 package_creator: "Amadou"
-private: True  # has to be True or False
+private: False  # has to be True or False
 url: ~
 state: "active"  # always "active".
-data_update_frequency: "Every day"
+data_update_frequency: "Every week"

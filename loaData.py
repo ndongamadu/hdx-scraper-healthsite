@@ -2,7 +2,6 @@ import requests
 import json
 import yaml
 
-
 #prend un objet json et l'ecrit dans le dossier data, nom = fileName.geojson
 def writeData(data,fileName):
     with open('data/'+fileName+'.geojson','w') as f:

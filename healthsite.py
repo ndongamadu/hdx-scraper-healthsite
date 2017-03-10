@@ -6,70 +6,26 @@ from slugify import slugify
 import json
 import time
 import csv
+import pandas as pd
+import os
+import subprocess
 
 logger = logging.getLogger(__name__)
-
+    
 def writeCsv(countryName):
     print('<------ creating csv file ------->')
-    try:
-        fichier = open('data/'+countryName+'.geojson')
-        fd = json.load(fichier)
-        countryData = fd['features']
-
-        csvf = open('data/'+countryName+'.csv','w')
-        csvwriter = csv.writer(csvf)
-        csvwriter.writerow(('tpe','lat','lon','name','version','completeness','source_url','raw_source','what3words','uuid','source','typeP','upstream','date_modified'))
-
-        for jdkeys in countryData:
-            geom = jdkeys['geometry']
-            prop = jdkeys['properties']
-
-            coord = geom['coordinates']
-            tpe = geom['type']
-            completeness = prop['completeness']
-            source_url = prop['source_url']
-            try:
-                raw_source = prop['raw-source']
-            except Exception :
-                pass
-            what3words = prop['what3words']
-            uuid = prop['uuid']
-            source = prop['source']
-            try:
-                typeP = prop["type"]
-            except Exception:
-                pass
-            upstream = prop['upstream']
-            date_modified = prop['date_modified']
-            name = prop['name']
-            version = prop['version']
-            csvwriter.writerow((tpe,coord[0],coord[1],name,version,completeness,source_url,raw_source,what3words,uuid,source,typeP,upstream,date_modified))
-    except Exception as e:
-        print('sorry csv not created')
+    with open('data/'+countryName+'.geojson') as jd :
+        data = json.load(jd)
+        pandasData = pd.DataFrame(data['features'])
+        pandasData.to_csv('data/'+countryName+'.csv')
     print('<----- csv created ----->')
 
-def generateCountryDataset(countryName,format):
-    countries = {
-    'Benin':"Cotonou",
-    'Burkina Faso':"Ouagadougou",
-    'Ivory-coast' : "Abidjan",
-    'Ghana': "accra",
-    'Guinea': "conakry",
-    'Gambia': "banjul",
-    'Guinea-Bissau': "bissau",
-    'Liberia': "monrovia",
-    'Mali': "bamako",
-    'Mauritania': "nouatchott",
-    'Niger': "niamey",
-    'Nigeria': "lagos",
-    'Senegal': "dakar",
-    'Sierra Leone': "freetown",
-    'Togo' : "lome"
-    }
-    capitale = countries[countryName]
+def generateCountryDataset(countryName):
+
     print('<------- Generating %s dataset -------->' %countryName)
-    url ="https://healthsites.io/api/v1/healthsites/search?search_type=placename"
-    parametres = {'name':countryName+'-'+capitale,'format':format}
+    urlgeojson ="https://healthsites.io/api/v1/healthsites/search?search_type=placename&format=geojson"
+
+    parametres = {'name':countryName}
     countryData = {"type": "FeatureCollection", "features": []}
 
     try:
@@ -79,15 +35,21 @@ def generateCountryDataset(countryName,format):
         pass
 
     try:
-        response = requests.get(url,params=parametres)
+        response = requests.get(urlgeojson,params=parametres)
         data = json.loads(response.text)
         if(len(data['features'])>len(countryData['features'])):
+            with open('data/healthsites.geojson','w') as f:
+                json.dump(data,f)
+    
+            subprocess.call("./writeToSHP.sh", shell=True)
             with open('data/'+countryName+'.geojson','w') as f:
                 json.dump(data,f)
-                print('<------- File created in data folder --------->')
+            writeCsv(countryName)
+            print('<------- File created in data folder --------->')
+
         else:
+            subprocess.call("./writeToSHP.sh", shell=True)
             print('File exists yet & there is no updates')
-        writeCsv(countryName)
 
     except Exception as e:
         print('>---- pays non reconnu %s----<'%e)
@@ -101,35 +63,40 @@ def generate_dataset(configuration,countryName):
     })
     dataset['name'] = slugified_name
     dataset['title'] = title
-    date = time.strftime("%d/%m/%Y")
-    dataset['dataset_date'] = date
 
+    #geojson resource
     rName = countryName+'-healthsites-geojson'
     resource = Resource()
     resource['name'] = rName
     resource['format'] = 'geojson'
-    resource['url'] = configuration['base_url']#+configuration['api']
+    resource['url'] = configuration['base_url']
     resource['description'] = configuration['base_url']
     resource['url_type'] = 'api'
     resource['resource_type'] = 'api'
 
-    generateCountryDataset(countryName,resource['format'])
-    # writeCsv(countryName)
+    generateCountryDataset(countryName)
+
+    #csv resource
     resource_csv = Resource()
     resource_csv['name'] = countryName+'-healthsites-csv'
-    resource_csv['url'] = configuration['base_url']
-    resource_csv['description'] = configuration['base_url']
-    resource_csv['url_type'] = 'api'
-    resource_csv['resource_type'] = 'api'
+    resource_csv['description'] = countryName+' healthsites csv'
     resource_csv['format'] = 'csv'
-    resource_csv.set_file_to_upload(configuration['data_folder']+countryName+'.csv')
-    # resource_csv.create_datastore(schema={'tpe':'STRING','lat':'STRING','lon':'STRING',
-    #     'name':'STRING','version':'STRING','completeness':'STRING','source_url':'STRING',
-    #     'raw_source':'STRING','what3words':'STRING','uuid':'STRING','source':'STRING','typeP':'STRING',
-    #     'upstream':'STRING','date_modified':'STRING'},path=configuration['data_folder']+countryName+'.'+resource['format'])
 
-    resource.set_file_to_upload(configuration['data_folder']+countryName+'.'+resource['format'])
+    #shp resource
+    resource_shp = Resource()
+    resource_shp['name'] = countryName+'-healthsites-shp'
+    resource_shp['format'] = 'zipped shapefile'
+    resource_shp['description'] = countryName+' healthsites shapefiles'
 
-    dataset.add_update_resources([resource,resource_csv])
+    if open(configuration['data_folder']+'shapefiles.zip'):
+        resource_shp.set_file_to_upload(configuration['data_folder']+'shapefiles.zip')
+
+    if open(configuration['data_folder']+countryName+'.csv'):
+        resource_csv.set_file_to_upload(configuration['data_folder']+countryName+'.csv')
+
+    if open(configuration['data_folder']+countryName+'.geojson'):
+        resource.set_file_to_upload(configuration['data_folder']+countryName+'.geojson')
+
+    dataset.add_update_resources([resource,resource_csv,resource_shp])
 
     return dataset
