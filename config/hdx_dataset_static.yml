@@ -3,7 +3,7 @@ author: "Healthsites"
 notes: "This dataset shows the list of operating health facilities. Attributes included: Name,Nature of Facility, Activities, Lat, Long"
 author_email: "contact@healthsites.org"
 maintainer: "hdx-amadou"
-license_id: "Open Database Licence (ODC-ODbL)"
+license_id: "ODbL"
 subnational: 1  # has to be 0 or 1. Default 1 for ACLED.
 caveats: "Read the Healthsites concept note http://bit.ly/2jkk5PA"
 methodology_other: " "
