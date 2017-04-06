@@ -6,3 +6,8 @@ npm-debug.log
 .DS_Store
 data/*
 test-csv.py
+testhdx.py
+ogr2ogr
+loaData.py
+healthsite.py
+errors.log
