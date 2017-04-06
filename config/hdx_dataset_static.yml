@@ -1,8 +1,8 @@
-owner_org: "Healthsites.io Ltd"
-author: "Healthsites"
+owner_org: "healthsites"
+author: "Global Healthsites Mapping Project"
 notes: "This dataset shows the list of operating health facilities. Attributes included: Name,Nature of Facility, Activities, Lat, Long"
-author_email: "sharehealthdata@healthsites.io
-maintainer: "hdx-amadou"
+author_email: "sharehealthdata@healthsites.io"
+maintainer: "markherringer"
 license_id: "ODbL"
 subnational: 1  # has to be 0 or 1. Default 1 for ACLED.
 caveats: "Read the Healthsites concept note http://bit.ly/2ocL2KY"
@@ -13,4 +13,4 @@ package_creator: "Amadou"
 private: False  # has to be True or False
 url: "https://healthsites.io/"
 state: "active"  # always "active".
-data_update_frequency: "Every week"
+data_update_frequency: "Every month"
