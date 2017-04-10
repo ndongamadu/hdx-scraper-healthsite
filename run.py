@@ -28,24 +28,24 @@ def main():
     conf = Configuration()
 
     countries = {
-            # 'Benin': "BEN",
-            # 'Burkina Faso': "BFA",
-            # # 'Ivory Coast': "CIV"
-            # 'Ghana': "GHA",
-            # 'Guinea': "GIN",
-            # 'Guinea-bissau': "GNB",
-            # 'Gambia': "GMB",
-            # 'Liberia': "LBR",
-            # 'Mali': "MLI",
-            # 'Mauritania': "MRT",
-            # 'Niger': "NER",
-            # 'Nigeria': "NGA",
-            # 'Senegal':"SEN",
-            # 'Sierra Leone':	"SLE",
-            # 'Togo': "TGO",
-            # 'Cameroon': "CMR",
-            # 'Central African Republic':"CAR",
-            # 'Tanzania':"TZA",
+            'Benin': "BEN",
+            'Burkina Faso': "BFA",
+            'Ivory Coast': "CIV",
+            'Ghana': "GHA",
+            'Guinea': "GIN",
+            'Guinea-bissau': "GNB",
+            'Gambia': "GMB",
+            'Liberia': "LBR",
+            'Mali': "MLI",
+            'Mauritania': "MRT",
+            'Niger': "NER",
+            'Nigeria': "NGA",
+            'Senegal':"SEN",
+            'Sierra Leone':	"SLE",
+            'Togo': "TGO",
+            'Cameroon': "CMR",
+            'Central African Republic':"CAR",
+            'Tanzania':"TZA",
             'Rwanda': "RWA"
     }
 
