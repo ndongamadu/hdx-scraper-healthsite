@@ -19,6 +19,7 @@ from healthsite2 import generate_dataset
 logger = logging.getLogger(__name__)
 from hdx.configuration import Configuration
 import subprocess
+from slugify import slugify
 
 
 
@@ -27,23 +28,25 @@ def main():
     conf = Configuration()
 
     countries = {
-            'Benin': "BEN",
-            'Burkina Faso': "BFA",
-            'ivory-coast': "CIV",
-            'Ghana': "GHA",
-            'Guinea republic': "GIN",
-            'Gambia': "GMB",
-            'Guinea Bissau republic': "GNB",
-            'Liberia': "LBR",
-            'Mali': "MLI",
-            'Mauritania': "MRT",
-            'Niger': "NER",
-            'Nigeria': "NGA",
-            'Senegal':"SEN",
-            'Sierra Leone':	"SLE",
-            'Togo': "TGO",
-            'Cameroon': "CMR",
-            'Central African Republic':"CAR"
+            # 'Benin': "BEN",
+            # 'Burkina Faso': "BFA",
+            # # 'Ivory Coast': "CIV"
+            # 'Ghana': "GHA",
+            # 'Guinea': "GIN",
+            # 'Guinea-bissau': "GNB",
+            # 'Gambia': "GMB",
+            # 'Liberia': "LBR",
+            # 'Mali': "MLI",
+            # 'Mauritania': "MRT",
+            # 'Niger': "NER",
+            # 'Nigeria': "NGA",
+            # 'Senegal':"SEN",
+            # 'Sierra Leone':	"SLE",
+            # 'Togo': "TGO",
+            # 'Cameroon': "CMR",
+            # 'Central African Republic':"CAR",
+            # 'Tanzania':"TZA",
+            'Rwanda': "RWA"
     }
 
     for pays in countries:
@@ -55,7 +58,6 @@ def main():
         dataset.set_dataset_date(datex)
         dataset.add_tags([pays,'HEALTH','HEALTHSITES'])
         dataset.create_in_hdx()
-
 
 
 

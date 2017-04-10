@@ -77,8 +77,11 @@ def getCountryHealthSites(configuration,countryName):
         print('<=========== file exists ! =========>')
 
 def generate_dataset(configuration,countryName):
-    name = countryName+' health facilities'
-    title = countryName+' healthsites'
+    showedName = countryName
+    if(countryName=="Ivory Coast"):
+        showedName="Cote d'Ivoire"
+    name = countryName+'-healthsites'
+    title = countryName+'-healthsites'
     slugified_name = slugify(name).lower()
     dataset = Dataset(configuration, {
     })
