@@ -47,9 +47,17 @@ def main():
             # 'Central African Republic':"CAR",
             # 'Tanzania':"TZA",
             # 'Rwanda': "RWA",
-            'Somalia': "SOM",
-            'South Sudan': "SSD",
-            'Yemen': "YEM"
+            # 'Somalia': "SOM",
+            # 'South Sudan': "SSD",
+            # 'Yemen': "YEM"
+            # 'Democratic Republic of The Congo': "COD",
+            # 'Uganda': "UGA",
+            # 'Zambia': "ZMB",
+            # 'Angola': "AGO",
+            # 'Congo': "COG".
+            'Kenya': "KEN",
+            'Ethiopia': "ETH"
+
     }
 
     for pays in countries:

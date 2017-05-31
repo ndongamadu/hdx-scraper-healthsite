@@ -1,0 +1,63 @@
+Territory,ISO-3166-2,ISO-3166-3,ccTLD
+,(2 Letter Country Code),(3 Letter Country Code),(Country Domain Extension)
+Algeria ,DZ,DZA,.dz
+Angola ,AO,AGO,.ao
+Ascension ,SH,SHN,.sh
+Benin ,BJ,BEN,.bj
+Botswana ,BW,BWA,.bw
+Burkina Faso ,BF,BFA,.bf
+Burundi ,BI,BDI,.bi
+Cameroon ,CM,CMR,.cm
+Cape Verde Islands ,CV,CPV,.cv
+Central African Republic ,CF,CAF,.cf
+Chad Republic ,TD,TCD,.td
+Comoros ,KM,COM,.km
+Congo ,CG,COG,.cg
+Dem. Republic of the Congo ,CD,COD,.cd
+Djibouti ,DJ,DJI,.dj
+Egypt ,EG,EGY,.eg
+Equatorial Guinea ,GQ,GNQ,.gq
+Eritrea ,ER,ERI,.er
+Ethiopia ,ET,ETH,.et
+Gabon Republic ,GA,GAB,.ga
+Gambia ,GM,GMB,.gm
+Ghana ,GH,GHA,.gh
+Guinea ,GN,GIN,.gn
+Guinea-Bissau ,GW,GNB,.gw
+Ivory Coast ,CI,CIV,.ci
+Kenya ,KE,KEN,.ke
+Lesotho ,LS,LSO,.ls
+Liberia ,LR,LBR,.lr
+Libya ,LY,LBY,.ly
+Madagascar ,MG,MDG,.mg
+Malawi ,MW,MWI,.mw
+Mali Republic ,ML,MLI,.ml
+Mauritania ,MR,MRT,.mr
+Mauritius ,MU,MUS,.mu
+Mayotte Island ,YT,MYT,.yt
+Morocco ,MA,MAR,.ma
+Mozambique ,MZ,MOZ,.mz
+Namibia ,NA,NAM,.na
+Niger Republic ,NE,NER,.ne
+Nigeria ,NG,NGA,.ng
+Principe ,ST,STP,.st
+Reunion Island ,RE,REU,.re
+Rwanda ,RW,RWA,.rw
+Sao Tome ,ST,STP,.st
+Senegal Republic ,SN,SEN,.sn
+Seychelles ,SC,SYC,.sc
+Sierra Leone ,SL,SLE,.sl
+Somalia Republic ,SO,SOM,.so
+South Africa ,ZA,ZAF,.za
+South Sudan ,SS,SSD,.ss
+St. Helena ,SH,SHN,.sh
+Sudan ,SD,SDN,.sd
+Swaziland ,SZ,SWZ,.sz
+Tanzania ,TZ,TZA,.tz
+Togo ,TG,TGO,.tg
+Tunisia ,TN,TUN,.tn
+Uganda ,UG,UGA,.ug
+Zaire ,CD,COD,.cd
+Zambia ,ZM,ZMB,.zm
+Zanzibar ,TZ,TZA,.tz
+Zimbabwe ,ZW,ZWE,.zw

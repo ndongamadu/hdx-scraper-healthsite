@@ -13,7 +13,7 @@ import subprocess
 
 logger = logging.getLogger(__name__)
 
-## v2 ##
+## v2 ## https://healthsites.io/api/v1/healthsites/search?search_type=placename&format=geojson$name=
 def getCountryHealthSites(configuration,countryName):
     print('<------- Generating %s dataset -------->' %countryName)
     url = configuration['base_url']+configuration['api_version']+configuration['api_name']+"search?search_type=placename&format=geojson"
