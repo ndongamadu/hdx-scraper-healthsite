@@ -13,4 +13,4 @@ package_creator: "Amadou"
 private: False  # has to be True or False
 url: "https://healthsites.io/"
 state: "active"  # always "active".
-data_update_frequency: "Every month"
+#data_update_frequency: "Every month"

@@ -11,14 +11,14 @@ for more information.
 git clone https://github.com/ndongamadu/hdx-scraper-healthsite.git
 ```
 ## Run it
-Open a terminal and run the install script to setup. This will install a virtualenv and install all the requirements.
+Open a terminal and run the install script. This will install a virtualenv and install all the requirements.
 ```
 cd hdx-scraper-healthsite
 python install.py
 ```
 ### HDX API key 
 Get into HDX website and save your API in your home directory.
-The process is well documented in the [HDX API repository](https://github.com/OCHA-DAP/hdx-python-api) : Usage -> Getting started -> Obtaining your API Key.
+The full process for getting the key is well documented in the [HDX API repository](https://github.com/OCHA-DAP/hdx-python-api) : Usage -> Getting started -> Obtaining your API Key.
 
 ### Setup country to download/update
 Open the ```healhsite2.py``` file. 
@@ -36,6 +36,7 @@ countries = {
 'Country2': "ISO3",
 'Country3': "ISO3"}
 ```
+Note : List of african countries and their ISO3 code is included the folder. See ```africa-countries-ios3.csv``` file.
 
 ### Running the script
 Open a terminal and execute the following command 
