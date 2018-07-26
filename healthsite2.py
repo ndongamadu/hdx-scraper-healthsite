@@ -107,8 +107,7 @@ def generate_dataset(configuration,countryName):
         geojsonResource['format'] = 'geojson'
         geojsonResource['url'] = configuration.read()['base_url']
         geojsonResource['description'] = countryName+' healthsites geojson'
-        # geojsonResource.set_file_to_upload(configuration.read()['data_folder']+countryName+'.geojson')
-        geojsonResource.set_file_to_upload('data/'+countryName+'.geojson')
+        geojsonResource.set_file_to_upload(configuration.read()['data_folder']+countryName+'.geojson')
 
         geojsonResource.check_required_fields(['group','package_id'])
         dataset.add_update_resource(geojsonResource)
@@ -118,8 +117,7 @@ def generate_dataset(configuration,countryName):
         resource_csv['name'] = countryName+'-healthsites-csv'
         resource_csv['description'] = countryName+' healthsites csv'
         resource_csv['format'] = 'csv'
-        # resource_csv.set_file_to_upload(configuration.read()['data_folder']+countryName+'.csv')
-        resource_csv.set_file_to_upload('data/'+countryName+'.csv')
+        resource_csv.set_file_to_upload(configuration.read()['data_folder']+countryName+'.csv')
 
         resource_csv.check_required_fields(['group','package_id'])
         dataset.add_update_resource(resource_csv)
@@ -129,8 +127,7 @@ def generate_dataset(configuration,countryName):
         resource_shp['name'] = countryName+'-healthsites-shp'
         resource_shp['format'] = 'zipped shapefile'
         resource_shp['description'] = countryName+' healthsites shapefiles'
-        # resource_shp.set_file_to_upload(configuration.read()['data_folder']+countryName+"-shapefiles.zip")
-        resource_shp.set_file_to_upload('data/'+countryName+'-shapefiles.zip')
+        resource_shp.set_file_to_upload(configuration.read()['data_folder']+countryName+"-shapefiles.zip")
 
         resource_shp.check_required_fields(['group','package_id'])
         dataset.add_update_resource(resource_shp)

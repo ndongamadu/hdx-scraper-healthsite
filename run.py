@@ -41,57 +41,57 @@ def main():
             'Guinea-bissau': "GNB",
             ## 'Nigeria': "NGA",
             
-            'Mali': "MLI",
-            'Mauritania': "MRT",
-            'Malawi':"MWI",
-            'Marocco': "MAR",
-            'Niger': "NER",
+            # 'Mali': "MLI",
+            # 'Mauritania': "MRT",
+            # 'Malawi':"MWI",
+            # 'Marocco': "MAR",
+            # 'Niger': "NER",
 
-            'Senegal':"SEN",
-            'Sierra Leone': "SLE",
-            'Togo': "TGO",
-            'Cameroon': "CMR",
+            # 'Senegal':"SEN",
+            # 'Sierra Leone': "SLE",
+            # 'Togo': "TGO",
+            # 'Cameroon': "CMR",
             # 'Central African Republic':"CAR",
-           'Tanzania':"TZA",
-           'Rwanda': "RWA",
-           'Somalia': "SOM",
-           'South Sudan': "SSD",
-           'Yemen': "YEM",
-           'Democratic Republic of The Congo': "COD",
-           'Uganda': "UGA",
-           'Zambia': "ZMB",
-           'Angola': "AGO",
-           'Kenya': "KEN",
-           'Ethiopia': "ETH",
-           'Algeria': "DZA",
-           'Egypt': "EGY",
-           'Tunisia':"TUN",
-           'Haiti': "HTI",
-           'Libya': "LBY",
-           'Sudan': "SDN",
-           'Bangladesh': "BGD",
-           'Djibouti': "DJI",
-           'Gabon': "GAB",
-           'Madagascar': "MDG",
-           'Lesotho': "LSO",
-           'Namibia': "NAM",
-           'Zimbabwe': "ZWE",
-           'Mozambique': "MOZ",
-           'Botswana': "BWA",
-           'Palestine': "PSE",
-           'Mauritius' : "MUS",
-           'Zambia' : "ZMB",
-           'Cape Verde': "CPV",
-           'Chad': "TCD",
-           'Comoros':"COM",
-           'Equatorial Guinea': "GNQ",
-           'Eritrea' : "ERI",
-           'Syria': "SYR",
-           'Jordan': "JOR",
-           'Lebanon' : "LBN",
-           'Colombia':"COL",
-           'Iraq': "IRQ",
-           'Nepal': "NPL"
+           # 'Tanzania':"TZA",
+           # 'Rwanda': "RWA",
+           # 'Somalia': "SOM",
+           # 'South Sudan': "SSD",
+           # 'Yemen': "YEM",
+           # 'Democratic Republic of The Congo': "COD",
+           # 'Uganda': "UGA",
+           # 'Zambia': "ZMB",
+           # 'Angola': "AGO",
+           # 'Kenya': "KEN",
+           # 'Ethiopia': "ETH",
+           # 'Algeria': "DZA",
+           # 'Egypt': "EGY",
+           # 'Tunisia':"TUN",
+           # 'Haiti': "HTI",
+           # 'Libya': "LBY",
+           # 'Sudan': "SDN",
+           # 'Bangladesh': "BGD",
+           # 'Djibouti': "DJI",
+           # 'Gabon': "GAB",
+           # 'Madagascar': "MDG",
+           # 'Lesotho': "LSO",
+           # 'Namibia': "NAM",
+           # 'Zimbabwe': "ZWE",
+           # 'Mozambique': "MOZ",
+           # 'Botswana': "BWA",
+           # 'Palestine': "PSE",
+           # 'Mauritius' : "MUS",
+           # 'Zambia' : "ZMB",
+           # 'Cape Verde': "CPV",
+           # 'Chad': "TCD",
+           # 'Comoros':"COM",
+           # 'Equatorial Guinea': "GNQ",
+           # 'Eritrea' : "ERI",
+           # 'Syria': "SYR",
+           # 'Jordan': "JOR",
+           # 'Lebanon' : "LBN",
+           # 'Colombia':"COL",
+           # 'Iraq': "IRQ",
+           # 'Nepal': "NPL"
 
     }
 
@@ -103,8 +103,10 @@ def main():
             for r in ressources:
                 if r['name'] == pays+'-healthsites-shp':
                     old_dataset.delete_resource(r)
+            print('=== shp resource deleted ===')
         except Exception as e:
             continue 
+
 
         dataset = generate_dataset(conf,pays)
         dataset.update_from_yaml()
@@ -119,4 +121,4 @@ def main():
 
 
 if __name__ == '__main__':
-    facade(main, hdx_site='test', user_agent='Healthsite data script',project_config_yaml=join('config', 'project_configuration.yml'))
+    facade(main, hdx_site='demo', user_agent='Healthsite data script',project_config_yaml=join('config', 'project_configuration.yml'))

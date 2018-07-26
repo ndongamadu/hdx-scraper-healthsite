@@ -1,5 +1,4 @@
-#git+git://github.com/ocha-dap/hdx-python-api.git@v0.81#egg=hdx-python-api
 hdx-python-api
 awesome-slugify==1.6.5
 pandas
-#json
+
