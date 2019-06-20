@@ -1,28 +1,29 @@
-#healthsites API documentation https://github.com/healthsites/healthsites/wiki/API
-#https://healthsites.io/api/v1/healthsites/search?search_type=facility&name=benin&format=json
-
+"""
+healthsites API documentation
+https://github.com/healthsites/healthsites/wiki/API
+https://healthsites.io/api/v1/healthsites/search?search_type=facility&name=benin&format=json
+"""
 import logging
 from hdx.data.dataset import Dataset
 from hdx.data.resource import Resource
 import requests
 from slugify import slugify
 import json
-import time
-import csv
 import os
 import shutil
 import subprocess
 
 logger = logging.getLogger(__name__)
 
-## v2 ## https://healthsites.io/api/v1/healthsites/search?search_type=placename&format=geojson$name=
+# https://healthsites.io/api/v1/healthsites/search?search_type=placename&format=geojson$name=
 
-# create the data folder 
+# create the data folder
 
-def getCountryHealthSites(configuration,countryName):
-    print('<------- Generating %s dataset -------->' %countryName)
 
-    url = configuration.read()['base_url']+configuration.read()['api_version']+configuration.read()['api_name']+"search?search_type=placename&format=geojson"
+def getCountryHealthSites(configuration, countryName):
+    print('<------- Generating %s dataset -------->' % countryName)
+
+    url = configuration.read()['base_url'] + configuration.read()['api_version'] + configuration.read()['api_name'] + "search?search_type=placename&format=geojson"
     countryData = {"type": "FeatureCollection", "features": []}
     try:
         with open('data/'+countryName+'.geojson','r') as f:
