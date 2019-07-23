@@ -101,17 +101,17 @@ def generate_dataset(configuration,countryName):
     #generating the datasets
     getCountryHealthSites(configuration,countryName)
     # geojson resource
-    if(os.path.isfile(configuration.read()['data_folder']+countryName+'.geojson')):
-        rName = countryName+'-healthsites-geojson'
-        geojsonResource = Resource()
-        geojsonResource['name'] = rName
-        geojsonResource['format'] = 'geojson'
-        geojsonResource['url'] = configuration.read()['base_url']
-        geojsonResource['description'] = countryName+' healthsites geojson'
-        geojsonResource.set_file_to_upload(configuration.read()['data_folder']+countryName+'.geojson')
+    # if(os.path.isfile(configuration.read()['data_folder']+countryName+'.geojson')):
+    #     rName = countryName+'-healthsites-geojson'
+    #     geojsonResource = Resource()
+    #     geojsonResource['name'] = rName
+    #     geojsonResource['format'] = 'geojson'
+    #     geojsonResource['url'] = configuration.read()['base_url']
+    #     geojsonResource['description'] = countryName+' healthsites geojson'
+    #     geojsonResource.set_file_to_upload(configuration.read()['data_folder']+countryName+'.geojson')
 
-        geojsonResource.check_required_fields(['group','package_id'])
-        dataset.add_update_resource(geojsonResource)
+    #     geojsonResource.check_required_fields(['group','package_id'])
+    #     dataset.add_update_resource(geojsonResource)
     #csv resource
     if(os.path.isfile(configuration.read()['data_folder']+countryName+'.csv')):
         resource_csv = Resource()
@@ -123,15 +123,15 @@ def generate_dataset(configuration,countryName):
         resource_csv.check_required_fields(['group','package_id'])
         dataset.add_update_resource(resource_csv)
     # shp resource
-    if(os.path.isfile(configuration.read()['data_folder']+countryName+"-shapefiles.zip")):
-        resource_shp = Resource()
-        resource_shp['name'] = countryName+'-healthsites-shp'
-        resource_shp['format'] = 'zipped shapefile'
-        resource_shp['description'] = countryName+' healthsites shapefiles'
-        resource_shp.set_file_to_upload(configuration.read()['data_folder']+countryName+"-shapefiles.zip")
+    # if(os.path.isfile(configuration.read()['data_folder']+countryName+"-shapefiles.zip")):
+    #     resource_shp = Resource()
+    #     resource_shp['name'] = countryName+'-healthsites-shp'
+    #     resource_shp['format'] = 'zipped shapefile'
+    #     resource_shp['description'] = countryName+' healthsites shapefiles'
+    #     resource_shp.set_file_to_upload(configuration.read()['data_folder']+countryName+"-shapefiles.zip")
 
-        resource_shp.check_required_fields(['group','package_id'])
-        dataset.add_update_resource(resource_shp)
+    #     resource_shp.check_required_fields(['group','package_id'])
+    #     dataset.add_update_resource(resource_shp)
 
 
     return dataset
