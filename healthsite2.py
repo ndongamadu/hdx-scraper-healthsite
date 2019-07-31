@@ -45,8 +45,10 @@ def getCountryHealthSites(configuration, countryName):
         else:
             for dt in data['features']:
                 newData['features'].append(dt)
-
-    #write the file to use to create de shp
+            nbPage+=1
+    #write if newData different from the potential existing file (update)
+    # if(len(newData['features'])> len(countryData['features'])):
+        #write the file to use to create de shp
     with open(configuration.read()['data_folder']+'healthsites.geojson','w') as f:
         json.dump(newData,f)
     #write the geojson with the country name
@@ -59,7 +61,6 @@ def getCountryHealthSites(configuration, countryName):
     #rename the shp to the country name
     if(os.path.isfile(configuration.read()['data_folder']+"shapefiles.zip")):
         shutil.move(configuration.read()['data_folder']+"shapefiles.zip", configuration.read()['data_folder']+countryName+"-shapefiles.zip")
-
     #rename the geojson to the country name
     shutil.move(configuration.read()['data_folder']+"healthsites.geojson", configuration.read()['data_folder']+countryName+".geojson")
     
@@ -74,10 +75,12 @@ def getCountryHealthSites(configuration, countryName):
                 nbRows +=1
             else:
                 writer.writerow(raw)
+    if(os.path.isfile(configuration.read()['data_folder']+"healthsites.csv")):
+        os.remove(configuration.read()['data_folder']+"healthsites.csv")
     print("===== %s files generated ! ======" %countryName)
 
 def generate_dataset(configuration,countryName):
-    showedName = countryName
+    #showedName = countryName
     if(countryName=="Ivory Coast"):
         showedName="Cote d'Ivoire"
     name = countryName+'-healthsites'
@@ -89,11 +92,11 @@ def generate_dataset(configuration,countryName):
         'name': slugified_name,
         'title': title,
     })
-    dataset['name'] = slugified_name
-    dataset['title'] = title
+    # dataset['name'] = slugified_name
+    # dataset['title'] = title
     #generating the datasets
     getCountryHealthSites(configuration,countryName)
-    #geojson resource
+    # geojson resource
     if(os.path.isfile(configuration.read()['data_folder']+countryName+'.geojson')):
         rName = countryName+'-healthsites-geojson'
         geojsonResource = Resource()
@@ -115,7 +118,7 @@ def generate_dataset(configuration,countryName):
 
         resource_csv.check_required_fields(['group','package_id'])
         dataset.add_update_resource(resource_csv)
-   #shp resource
+    # shp resource
     if(os.path.isfile(configuration.read()['data_folder']+countryName+"-shapefiles.zip")):
         resource_shp = Resource()
         resource_shp['name'] = countryName+'-healthsites-shp'
@@ -125,6 +128,5 @@ def generate_dataset(configuration,countryName):
 
         resource_shp.check_required_fields(['group','package_id'])
         dataset.add_update_resource(resource_shp)
-
 
     return dataset
