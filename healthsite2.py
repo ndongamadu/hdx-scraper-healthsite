@@ -9,6 +9,7 @@ from hdx.data.resource import Resource
 import requests
 from slugify import slugify
 import json
+import csv
 import os
 import shutil
 import subprocess
@@ -62,10 +63,21 @@ def getCountryHealthSites(configuration, countryName):
             shutil.move(configuration.read()['data_folder']+"shapefiles.zip", configuration.read()['data_folder']+countryName+"-shapefiles.zip")
         #rename the csv to the country name
         if(os.path.isfile(configuration.read()['data_folder']+"healthsites.csv")):
-            shutil.move(configuration.read()['data_folder']+"healthsites.csv", configuration.read()['data_folder']+countryName+".csv")
+            shutil.copy(configuration.read()['data_folder']+"healthsites.csv", configuration.read()['data_folder']+countryName+".csv")
         #rename the geojson to the country name
         shutil.move(configuration.read()['data_folder']+"healthsites.geojson", configuration.read()['data_folder']+countryName+".geojson")
-
+        
+        reader = csv.reader(open(configuration.read()['data_folder']+countryName+".csv"))
+        nbRows = 0
+        with open(configuration.read()['data_folder']+countryName+"-hxl.csv", 'w') as fcsv:
+            writer = csv.writer(fcsv, delimiter=',')
+            for raw in reader:
+                if nbRows == 0 :
+                    writer.writerow(raw)
+                    writer.writerow(["#geo +lon","#geo +lat","#meta +osm_id","#meta +source_url"," "," ","#loc +name", "#indicator +completeness", "#meta +uuid", "#date", "#meta +source", "#meta +osm_type", "#meta +version", "#indicator +type", " ", " ", "#contact +phone", " ", "#meta +opening_hours", "#contact +email"])
+                    nbRows +=1
+                else:
+                    writer.writerow(raw)
         print("===== %s files generated ! ======" %countryName)
     else:
         #skip writing new file

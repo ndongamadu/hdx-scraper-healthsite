@@ -23,7 +23,7 @@ def main():
     '''Generate dataset and create it in HDX'''
     conf = Configuration()
     countries = {
-            # 'Benin': 'BEN',
+            'Benin': 'BEN'
             # 'Burkina Faso': "BFA",
             # 'Burundi': "BDI",
             # 'Congo': "COG",
@@ -123,20 +123,20 @@ def main():
 
 
             # adhoc exports 
-            'Indonesia': "IDN"
+            # 'Indonesia': "IDN"
     }
 
     for pays in countries:
         # paysLower = slugify(pays).lower()
         dataset = generate_dataset(conf, pays)
-        dataset.update_from_yaml()
-        dataset.add_country_location(countries[pays])
-        dataset.set_expected_update_frequency('Live')
-        dataset.add_tags([pays,'hospitals', 'health facilities', 'HEALTHSITES'])
-        datex = time.strftime("%x")
-        dataset.set_dataset_date(datex)
-        dataset.set_subnational(True)
-        dataset.create_in_hdx()
+        # dataset.update_from_yaml()
+        # dataset.add_country_location(countries[pays])
+        # dataset.set_expected_update_frequency('Live')
+        # dataset.add_tags([pays,'hospitals', 'health facilities', 'HEALTHSITES'])
+        # datex = time.strftime("%x")
+        # dataset.set_dataset_date(datex)
+        # dataset.set_subnational(True)
+        # dataset.create_in_hdx()
         # try:
         #     old_dataset = Dataset.read_from_hdx(paysLower+'-healthsites')
         #     ressources = old_dataset.get_resources()
@@ -157,4 +157,4 @@ def main():
         #     continue
 
 if __name__ == '__main__':
-    facade(main, hdx_site='prod', user_agent='HDXINTERNAL healthsites scraper', project_config_yaml=join('config', 'project_configuration.yml'))
+    facade(main, hdx_site='test', user_agent='HDXINTERNAL healthsites scraper', project_config_yaml=join('config', 'project_configuration.yml'))
