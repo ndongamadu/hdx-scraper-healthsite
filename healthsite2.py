@@ -45,55 +45,36 @@ def getCountryHealthSites(configuration, countryName):
         else:
             for dt in data['features']:
                 newData['features'].append(dt)
-            nbPage+=1
-    #write if newData different from the potential existing file (update)
-    if(len(newData['features'])> len(countryData['features'])):
-        #write the file to use to create de shp
-        with open(configuration.read()['data_folder']+'healthsites.geojson','w') as f:
-            json.dump(newData,f)
-        #write the geojson with the country name
-        with open(configuration.read()['data_folder']+countryName+'.geojson','w') as f2:
-            json.dump(newData,f2)
-        #write to csv
-        subprocess.call("./geojsonToCSV.sh",shell=True)
-        #write the shp
-        subprocess.call("./writeToSHP.sh",shell=True)
-        #rename the shp to the country name
-        if(os.path.isfile(configuration.read()['data_folder']+"shapefiles.zip")):
-            shutil.move(configuration.read()['data_folder']+"shapefiles.zip", configuration.read()['data_folder']+countryName+"-shapefiles.zip")
-        #rename the csv to the country name
-        if(os.path.isfile(configuration.read()['data_folder']+"healthsites.csv")):
-            shutil.copy(configuration.read()['data_folder']+"healthsites.csv", configuration.read()['data_folder']+countryName+".csv")
-        #rename the geojson to the country name
-        shutil.move(configuration.read()['data_folder']+"healthsites.geojson", configuration.read()['data_folder']+countryName+".geojson")
-        
-        reader = csv.reader(open(configuration.read()['data_folder']+countryName+".csv"))
-        nbRows = 0
-        with open(configuration.read()['data_folder']+countryName+"-hxl.csv", 'w') as fcsv:
-            writer = csv.writer(fcsv, delimiter=',')
-            for raw in reader:
-                if nbRows == 0 :
-                    writer.writerow(raw)
-                    writer.writerow(["#geo +lon","#geo +lat","#meta +osm_id","#meta +source_url"," "," ","#loc +name", "#indicator +completeness", "#meta +uuid", "#date", "#meta +source", "#meta +osm_type", "#meta +version", "#indicator +type", " ", " ", "#contact +phone", " ", "#meta +opening_hours", "#contact +email"])
-                    nbRows +=1
-                else:
-                    writer.writerow(raw)
-        print("===== %s files generated ! ======" %countryName)
-    else:
-        #skip writing new file
-        #test and create the shp if not exists
-        if(os.path.isfile(configuration.read()['data_folder']+countryName+"-shapefiles.zip") == False):
-            shutil.copy(configuration.read()['data_folder']+countryName+'.geojson', configuration.read()['data_folder']+"healthsites.geojson")
-            subprocess.call("./writeToSHP.sh",shell=True)
-            shutil.move(configuration.read()['data_folder']+"shapefiles.zip", configuration.read()['data_folder']+countryName+"-shapefiles.zip")
 
-        #test and create the csv if not exits
-        if(os.path.isfile(configuration.read()['data_folder']+countryName+".csv")== False):
-            shutil.copy(configuration.read()['data_folder']+countryName+'.geojson', configuration.read()['data_folder']+"healthsites.geojson")
-            subprocess.call("./geojsonToCSV.sh",shell=True)
-            shutil.move(configuration.read()['data_folder']+"healthsites.csv", configuration.read()['data_folder']+countryName+".csv")
+    #write the file to use to create de shp
+    with open(configuration.read()['data_folder']+'healthsites.geojson','w') as f:
+        json.dump(newData,f)
+    #write the geojson with the country name
+    with open(configuration.read()['data_folder']+countryName+'.geojson','w') as f2:
+        json.dump(newData,f2)
+    #write to csv
+    subprocess.call("./geojsonToCSV.sh",shell=True)
+    #write the shp
+    subprocess.call("./writeToSHP.sh",shell=True)
+    #rename the shp to the country name
+    if(os.path.isfile(configuration.read()['data_folder']+"shapefiles.zip")):
+        shutil.move(configuration.read()['data_folder']+"shapefiles.zip", configuration.read()['data_folder']+countryName+"-shapefiles.zip")
 
-        print('<=========== file exists ! =========>')
+    #rename the geojson to the country name
+    shutil.move(configuration.read()['data_folder']+"healthsites.geojson", configuration.read()['data_folder']+countryName+".geojson")
+    
+    reader = csv.reader(open(configuration.read()['data_folder']+"healthsites.csv"))
+    nbRows = 0
+    with open(configuration.read()['data_folder']+countryName+".csv", 'w') as fcsv:
+        writer = csv.writer(fcsv, delimiter=',')
+        for raw in reader:
+            if nbRows == 0 :
+                writer.writerow(raw)
+                writer.writerow(["#geo +lon","#geo +lat","#meta +osm_id","#meta +source_url"," "," ","#loc +name", "#indicator +completeness", "#meta +uuid", "#date", "#meta +source", "#meta +osm_type", "#meta +version", "#indicator +type", " ", " ", "#contact +phone", " ", "#meta +opening_hours", "#contact +email"])
+                nbRows +=1
+            else:
+                writer.writerow(raw)
+    print("===== %s files generated ! ======" %countryName)
 
 def generate_dataset(configuration,countryName):
     showedName = countryName
@@ -108,22 +89,22 @@ def generate_dataset(configuration,countryName):
         'name': slugified_name,
         'title': title,
     })
-    # dataset['name'] = slugified_name
-    # dataset['title'] = title
+    dataset['name'] = slugified_name
+    dataset['title'] = title
     #generating the datasets
     getCountryHealthSites(configuration,countryName)
-    # geojson resource
-    # if(os.path.isfile(configuration.read()['data_folder']+countryName+'.geojson')):
-    #     rName = countryName+'-healthsites-geojson'
-    #     geojsonResource = Resource()
-    #     geojsonResource['name'] = rName
-    #     geojsonResource['format'] = 'geojson'
-    #     geojsonResource['url'] = configuration.read()['base_url']
-    #     geojsonResource['description'] = countryName+' healthsites geojson'
-    #     geojsonResource.set_file_to_upload(configuration.read()['data_folder']+countryName+'.geojson')
+    #geojson resource
+    if(os.path.isfile(configuration.read()['data_folder']+countryName+'.geojson')):
+        rName = countryName+'-healthsites-geojson'
+        geojsonResource = Resource()
+        geojsonResource['name'] = rName
+        geojsonResource['format'] = 'geojson'
+        geojsonResource['url'] = configuration.read()['base_url']
+        geojsonResource['description'] = countryName+' healthsites geojson'
+        geojsonResource.set_file_to_upload(configuration.read()['data_folder']+countryName+'.geojson')
 
-    #     geojsonResource.check_required_fields(['group','package_id'])
-    #     dataset.add_update_resource(geojsonResource)
+        geojsonResource.check_required_fields(['group','package_id'])
+        dataset.add_update_resource(geojsonResource)
     #csv resource
     if(os.path.isfile(configuration.read()['data_folder']+countryName+'.csv')):
         resource_csv = Resource()
@@ -134,16 +115,16 @@ def generate_dataset(configuration,countryName):
 
         resource_csv.check_required_fields(['group','package_id'])
         dataset.add_update_resource(resource_csv)
-    # shp resource
-    # if(os.path.isfile(configuration.read()['data_folder']+countryName+"-shapefiles.zip")):
-    #     resource_shp = Resource()
-    #     resource_shp['name'] = countryName+'-healthsites-shp'
-    #     resource_shp['format'] = 'zipped shapefile'
-    #     resource_shp['description'] = countryName+' healthsites shapefiles'
-    #     resource_shp.set_file_to_upload(configuration.read()['data_folder']+countryName+"-shapefiles.zip")
+   #shp resource
+    if(os.path.isfile(configuration.read()['data_folder']+countryName+"-shapefiles.zip")):
+        resource_shp = Resource()
+        resource_shp['name'] = countryName+'-healthsites-shp'
+        resource_shp['format'] = 'zipped shapefile'
+        resource_shp['description'] = countryName+' healthsites shapefiles'
+        resource_shp.set_file_to_upload(configuration.read()['data_folder']+countryName+"-shapefiles.zip")
 
-    #     resource_shp.check_required_fields(['group','package_id'])
-    #     dataset.add_update_resource(resource_shp)
+        resource_shp.check_required_fields(['group','package_id'])
+        dataset.add_update_resource(resource_shp)
 
 
     return dataset
