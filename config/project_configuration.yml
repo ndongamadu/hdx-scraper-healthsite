@@ -1,4 +1,4 @@
 base_url: "https://healthsites.io/"
-api_version: "api/v1/"
-api_name: "healthsites/"
+api_version: "api/v2/"
+api_name: "facilities/"
 data_folder: "data/"

@@ -13,18 +13,22 @@ import csv
 import os
 import shutil
 import subprocess
-
+import yaml
 logger = logging.getLogger(__name__)
 
 # https://healthsites.io/api/v1/healthsites/search?search_type=placename&format=geojson$name=
+# https://healthsites.io/api/v2/facilities/?api-key=6e6169fb0ff9d2e2a590ca44ef1bae19af102205&country=senegal&output=geojson
+# https://healthsites.io/api/v2/facilities/?api-key=6e6169fb0ff9d2e2a590ca44ef1bae19af102205&output=geojson&page=1&flat-properties=true
 
-# create the data folder
 
+def getAPIKEY():
+    apiFile = yaml.load(open('config/api-key.yml','r'))
+    return apiFile['cle']
 
 def getCountryHealthSites(configuration, countryName):
     print('<------- Generating %s dataset -------->' % countryName)
 
-    url = configuration.read()['base_url'] + configuration.read()['api_version'] + configuration.read()['api_name'] + "search?search_type=placename&format=geojson"
+    url = configuration.read()['base_url'] + configuration.read()['api_version'] + configuration.read()['api_name'] + "?api-key="+getAPIKEY() + "&output=geojson&flat-properties=true"
     countryData = {"type": "FeatureCollection", "features": []}
     try:
         with open('data/'+countryName+'.geojson','r') as f:
@@ -32,13 +36,13 @@ def getCountryHealthSites(configuration, countryName):
     except Exception as e:
         pass
     newData = {"type": "FeatureCollection", "features": []}
-    parameters = {'name':countryName,'page':0}
+    parameters = {'country':countryName,'page':0}
     nbPage = 1
     #iterate on page number
     #get data by page and return newData with all the data
     while 1:
         parameters['page'] = nbPage
-        response = requests.get(url,params=parameters)
+        response = requests.get(url,params=parameters)        
         data = json.loads(response.text)
         if(data['features']==[]):
             break
@@ -63,21 +67,44 @@ def getCountryHealthSites(configuration, countryName):
         shutil.move(configuration.read()['data_folder']+"shapefiles.zip", configuration.read()['data_folder']+countryName+"-shapefiles.zip")
     #rename the geojson to the country name
     shutil.move(configuration.read()['data_folder']+"healthsites.geojson", configuration.read()['data_folder']+countryName+".geojson")
-    
-    reader = csv.reader(open(configuration.read()['data_folder']+"healthsites.csv"))
-    nbRows = 0
-    with open(configuration.read()['data_folder']+countryName+".csv", 'w') as fcsv:
-        writer = csv.writer(fcsv, delimiter=',')
-        for raw in reader:
-            if nbRows == 0 :
-                writer.writerow(raw)
-                writer.writerow(["#geo +lon","#geo +lat","#meta +osm_id","#meta +source_url"," "," ","#loc +name", "#indicator +completeness", "#meta +uuid", "#date", "#meta +source", "#meta +osm_type", "#meta +version", "#indicator +type", " ", " ", "#contact +phone", " ", "#meta +opening_hours", "#contact +email"])
-                nbRows +=1
-            else:
-                writer.writerow(raw)
+
+    #rename the csv to the country name
     if(os.path.isfile(configuration.read()['data_folder']+"healthsites.csv")):
-        os.remove(configuration.read()['data_folder']+"healthsites.csv")
+        shutil.move(configuration.read()['data_folder']+"healthsites.csv", configuration.read()['data_folder']+countryName+".csv")
+
+#adding hxl tags ?    
+    # reader = csv.reader(open(configuration.read()['data_folder']+"healthsites.csv"))
+    # nbRows = 0
+    # with open(configuration.read()['data_folder']+countryName+".csv", 'w') as fcsv:
+    #     writer = csv.writer(fcsv, delimiter=',')
+    #     for raw in reader:
+    #         if nbRows == 0 :
+    #             writer.writerow(raw)
+    #             print(raw)
+    #             writer.writerow(["#geo +lon","#geo +lat","#meta +osm_id","#meta +source_url","#geo +w3w"," ","#loc +name", "#indicator +completeness +pct", "#meta +uuid", "#date +modified", "#meta +source", "#meta +osm_type", "#meta +version", "#indicator +loctype", "#contact +phone", "#contact +address ", "#contact +email","#access +opening_hours",])
+    #             nbRows +=1
+    #         else:
+    #             writer.writerow(raw)  
+
+    #===
+    #rename the csv to the country name
+    # if(os.path.isfile(configuration.read()['data_folder']+"healthsites.csv")):
+    #     shutil.move(configuration.read()['data_folder']+"healthsites.csv", configuration.read()['data_folder']+countryName+".csv")
+    #==
+    # if(os.path.isfile(configuration.read()['data_folder']+"healthsites.csv")):
+    #     os.remove(configuration.read()['data_folder']+"healthsites.csv")
     print("===== %s files generated ! ======" %countryName)
+#['X', 'Y', 'osm_id', 'source_url', 'what3words', 'upstream', 'name', 'completeness', 'uuid', 'date_modified', 'source', 'osm_type', 'version', 'type', 'defining-hours', 'activities', 'ownership', 'tags', 'scope-of-service', 'ancillary-services', 'phone', 'notes', 'nature-of-facility', 'physical-address', 'inpatient-service']
+def hxlator(to_hxl):
+    i = 0
+    hxl_tags = [None] * len(to_hxl)
+    print(hxl_tags)
+    while i <= len(to_hxl):
+        if to_hxl[i] == 'X':
+            hxl_tags[i] = "#geo +lon"
+        i +=1
+    print("==hxl tags==")
+    print(hxl_tags)
 
 def generate_dataset(configuration,countryName):
     #showedName = countryName

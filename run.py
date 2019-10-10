@@ -16,11 +16,14 @@ import time
 import csv
 import requests
 from hdx.facades.simple import facade
-from healthsite2 import generate_dataset
+from healthsite2 import *
 from slugify import slugify
 from hdx.data.dataset import Dataset
 logger = logging.getLogger(__name__)
 
+def checkCountryHealthsites(country):
+    url = "https://healthsites.io/api/v2/facilities/count?api-key="+getAPIKEY() + "&country=%s" %country
+    return requests.get(url).status_code
 
 def main():
     '''Generate dataset and create it in HDX'''
@@ -37,17 +40,25 @@ def main():
     for record in wrapper:
         if record[0] != '#country+name':
             countries.append(record)
-
+    exports = 0
+    failed = []
     for pays in countries:
-        dataset = generate_dataset(conf, pays[0])
-        dataset.update_from_yaml()
-        dataset.add_country_location(pays[0])
-        dataset.set_expected_update_frequency('Live')
-        dataset.add_tag('health facilities')
-        datex = time.strftime("%x")
-        dataset.set_dataset_date(datex)
-        dataset.set_subnational(True)
-        dataset.create_in_hdx()
+        if checkCountryHealthsites(pays[0])==400:
+            failed.append(pays[0])
+            print("There is a problem with %s exports" %pays[0])
+        else:
+            dataset = generate_dataset(conf, pays[0])
+            dataset.update_from_yaml()
+            dataset.add_country_location(pays[0])
+            dataset.set_expected_update_frequency('Live')
+            dataset.add_tag('health facilities')
+            datex = time.strftime("%x")
+            dataset.set_dataset_date(datex)
+            dataset.set_subnational(True)
+            dataset.create_in_hdx()
+            exports +=1
+    print("======================= These exports failed : %s =======================" %failed)
+    print("======================= %s countries exported !=======================" %exports)
 
 if __name__ == '__main__':
-    facade(main, hdx_site='test', user_agent='HDXINTERNAL healthsites scraper', project_config_yaml=join('config', 'project_configuration.yml'))
+    facade(main, hdx_site='prod', user_agent='HDXINTERNAL healthsites scraper', project_config_yaml=join('config', 'project_configuration.yml'))
