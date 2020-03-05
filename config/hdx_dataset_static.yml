@@ -8,7 +8,7 @@ subnational: 1  # has to be 0 or 1. Default 1 for ACLED.
 caveats: "Read the Healthsites concept note http://bit.ly/2ocL2KY"
 methodology_other: " "
 methodology: "Social Media and institutional sharing"
-dataset_source: "Global Healthsites Mapping Project"
+dataset_source: "OpenStreetMap contributors"
 package_creator: "Amadou"
 private: False  # has to be True or False
 url: "https://healthsites.io/"

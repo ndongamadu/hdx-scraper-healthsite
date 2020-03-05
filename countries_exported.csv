@@ -1,0 +1,147 @@
+,Unnamed: 0,Country,ISO3,Status,Unnamed: 0,Country,ISO3,Status,Export
+0,0,Papua New Guinea,PNG,200,0,Papua New Guinea,PNG,200,Exported
+1,1,Paraguay,PRY,200,1,Paraguay,PRY,200,Exported
+2,2,Rwanda,RWA,200,2,Rwanda,RWA,200,Exported
+3,3,Senegal,SEN,200,3,Senegal,SEN,200,Exported
+4,4,Solomon Islands,SLB,200,4,Solomon Islands,SLB,200,Exported
+5,5,Tajikistan,TJK,200,5,Tajikistan,TJK,200,Exported
+6,6,Thailand,THA,200,6,Thailand,THA,200,Exported
+7,7,Uganda,UGA,200,7,Uganda,UGA,200,Exported
+8,9,Vanuatu,VUT,200,9,Vanuatu,VUT,200,Exported
+9,10,Algeria,DZA,200,10,Algeria,DZA,200,Exported
+10,11,Azerbaijan,AZE,200,11,Azerbaijan,AZE,200,Exported
+11,12,Bhutan,BTN,200,12,Bhutan,BTN,200,Exported
+12,14,Burkina Faso,BFA,200,14,Burkina Faso,BFA,200,Exported
+13,15,Cambodia,KHM,200,15,Cambodia,KHM,200,Exported
+14,16,Chile,CHL,200,16,Chile,CHL,200,Exported
+15,17,Djibouti,DJI,200,17,Djibouti,DJI,200,Exported
+16,18,Dominican Republic,DOM,200,18,Dominican Republic,DOM,200,Exported
+17,19,El Salvador,SLV,200,19,El Salvador,SLV,200,Exported
+18,21,Georgia,GEO,200,21,Georgia,GEO,200,Exported
+19,22,Guinea,GIN,200,22,Guinea,GIN,200,Exported
+20,25,Lesotho,LSO,200,25,Lesotho,LSO,200,Exported
+21,26,Liberia,LBR,200,26,Liberia,LBR,200,Exported
+22,27,Mauritania,MRT,200,27,Mauritania,MRT,200,Exported
+23,28,Mexico,MEX,200,28,Mexico,MEX,200,Exported
+24,29,Namibia,NAM,200,29,Namibia,NAM,200,Exported
+25,30,Peru,PER,200,30,Peru,PER,200,Exported
+26,31,Samoa,WSM,200,31,Samoa,WSM,200,Exported
+27,32,Sierra Leone,SLE,200,32,Sierra Leone,SLE,200,Exported
+28,33,Sri Lanka,LKA,200,33,Sri Lanka,LKA,200,Exported
+29,36,Tonga,TON,200,36,Tonga,TON,200,Exported
+30,37,Turkmenistan,TKM,200,37,Turkmenistan,TKM,200,Exported
+31,38,Uzbekistan,UZB,200,38,Uzbekistan,UZB,200,Exported
+32,41,Zambia,ZMB,200,41,Zambia,ZMB,200,Exported
+33,42,Zimbabwe,ZWE,200,42,Zimbabwe,ZWE,200,Exported
+34,43,Angola,AGO,200,43,Angola,AGO,200,Exported
+35,44,Maldives,MDV,200,44,Maldives,MDV,200,Exported
+36,45,Antigua and Barbuda,ATG,200,45,Antigua and Barbuda,ATG,200,Exported
+37,46,Argentina,ARG,200,46,Argentina,ARG,200,Exported
+38,47,Benin,BEN,200,47,Benin,BEN,200,Exported
+39,48,British Virgin Islands,VGB,200,48,British Virgin Islands,VGB,200,Exported
+40,50,Equatorial Guinea,GNQ,200,50,Equatorial Guinea,GNQ,200,Exported
+41,51,Gabon,GAB,200,51,Gabon,GAB,200,Exported
+42,52,Ghana,GHA,200,52,Ghana,GHA,200,Exported
+43,53,Guinea-Bissau,GNB,200,53,Guinea-Bissau,GNB,200,Exported
+44,54,Jamaica,JAM,200,54,Jamaica,JAM,200,Exported
+45,55,Kazakhstan,KAZ,200,55,Kazakhstan,KAZ,200,Exported
+46,56,Nicaragua,NIC,200,56,Nicaragua,NIC,200,Exported
+47,58,Saint Kitts and Nevis,KNA,200,58,Saint Kitts and Nevis,KNA,200,Exported
+48,60,South Africa,ZAF,200,60,South Africa,ZAF,200,Exported
+49,62,Uruguay,URY,200,62,Uruguay,URY,200,Exported
+50,63,Anguilla,AIA,200,63,Anguilla,AIA,200,Exported
+51,66,Barbados,BRB,200,66,Barbados,BRB,200,Exported
+52,67,Belize,BLZ,200,67,Belize,BLZ,200,Exported
+53,68,Bermuda,BMU,200,68,Bermuda,BMU,200,Exported
+54,69,Brazil,BRA,200,69,Brazil,BRA,200,Exported
+55,70,Cayman Islands,CYM,200,70,Cayman Islands,CYM,200,Exported
+56,71,Cuba,CUB,200,71,Cuba,CUB,200,Exported
+57,73,Dominica,DMA,200,73,Dominica,DMA,200,Exported
+58,75,Grenada,GRD,200,75,Grenada,GRD,200,Exported
+59,77,Guyana,GUY,200,77,Guyana,GUY,200,Exported
+60,79,Montserrat,MSR,200,79,Montserrat,MSR,200,Exported
+61,81,Saint Lucia,LCA,200,81,Saint Lucia,LCA,200,Exported
+62,83,Saint Vincent and The Grenadines,VCT,200,83,Saint Vincent and The Grenadines,VCT,200,Exported
+63,85,Suriname,SUR,200,85,Suriname,SUR,200,Exported
+64,86,Trinidad and Tobago,TTO,200,86,Trinidad and Tobago,TTO,200,Exported
+65,87,Turks and Caicos Islands,TCA,200,87,Turks and Caicos Islands,TCA,200,Exported
+66,88,Botswana,BWA,200,88,Botswana,BWA,200,Exported
+67,89,India,IND,200,89,India,IND,200,Exported
+68,90,Togo,TGO,200,90,Togo,TGO,200,Exported
+69,91,Bahrain,BHR,200,91,Bahrain,BHR,200,Exported
+70,92,China,CHN,200,92,China,CHN,200,Exported
+71,93,Comoros,COM,200,93,Comoros,COM,200,Exported
+72,94,Kuwait,KWT,200,94,Kuwait,KWT,200,Exported
+73,95,Mauritius,MUS,200,95,Mauritius,MUS,200,Exported
+74,96,Morocco,MAR,200,96,Morocco,MAR,200,Exported
+75,97,Oman,OMN,200,97,Oman,OMN,200,Exported
+76,98,Qatar,QAT,200,98,Qatar,QAT,200,Exported
+77,99,Saudi Arabia,SAU,200,99,Saudi Arabia,SAU,200,Exported
+78,100,Seychelles,SYC,200,100,Seychelles,SYC,200,Exported
+79,101,Tunisia,TUN,200,101,Tunisia,TUN,200,Exported
+80,102,United Arab Emirates,ARE,200,102,United Arab Emirates,ARE,200,Exported
+81,104,Greece,GRC,200,104,Greece,GRC,200,Exported
+82,106,Albania,ALB,200,106,Albania,ALB,200,Exported
+83,108,Andorra,AND,200,108,Andorra,AND,200,Exported
+84,110,Australia,AUS,200,110,Australia,AUS,200,Exported
+85,111,Austria,AUT,200,111,Austria,AUT,200,Exported
+86,112,Belarus,BLR,200,112,Belarus,BLR,200,Exported
+87,113,Belgium,BEL,200,113,Belgium,BEL,200,Exported
+88,115,Bosnia and Herzegovina,BIH,200,115,Bosnia and Herzegovina,BIH,200,Exported
+89,117,British Indian Ocean Territory,IOT,200,117,British Indian Ocean Territory,IOT,200,Exported
+90,119,Bulgaria,BGR,200,119,Bulgaria,BGR,200,Exported
+91,120,Canada,CAN,200,120,Canada,CAN,200,Exported
+92,121,China, Hong Kong Special Administrative Region,200,121,China, Hong Kong Special Administrative Region,200,Exported
+93,122,China, Macao Special Administrative Region,200,122,China, Macao Special Administrative Region,200,Exported
+94,125,Cook Islands,COK,200,125,Cook Islands,COK,200,Exported
+95,126,Costa Rica,CRI,200,126,Costa Rica,CRI,200,Exported
+96,127,Croatia,HRV,200,127,Croatia,HRV,200,Exported
+97,128,Cyprus,CYP,200,128,Cyprus,CYP,200,Exported
+98,130,Denmark,DNK,200,130,Denmark,DNK,200,Exported
+99,131,Estonia,EST,200,131,Estonia,EST,200,Exported
+100,133,Faroe Islands,FRO,200,133,Faroe Islands,FRO,200,Exported
+101,134,Finland,FIN,200,134,Finland,FIN,200,Exported
+102,135,France,FRA,200,135,France,FRA,200,Exported
+103,138,Germany,DEU,200,138,Germany,DEU,200,Exported
+104,139,Gibraltar,GIB,200,139,Gibraltar,GIB,200,Exported
+105,140,Greenland,GRL,200,140,Greenland,GRL,200,Exported
+106,142,Guernsey,GGY,200,142,Guernsey,GGY,200,Exported
+107,145,Hungary,HUN,200,145,Hungary,HUN,200,Exported
+108,146,Iceland,ISL,200,146,Iceland,ISL,200,Exported
+109,147,Ireland,IRL,200,147,Ireland,IRL,200,Exported
+110,148,Isle of Man,IMN,200,148,Isle of Man,IMN,200,Exported
+111,149,Israel,ISR,200,149,Israel,ISR,200,Exported
+112,150,Italy,ITA,200,150,Italy,ITA,200,Exported
+113,151,Japan,JPN,200,151,Japan,JPN,200,Exported
+114,152,Jersey,JEY,200,152,Jersey,JEY,200,Exported
+115,153,Kiribati,KIR,200,153,Kiribati,KIR,200,Exported
+116,154,Latvia,LVA,200,154,Latvia,LVA,200,Exported
+117,155,Liechtenstein,LIE,200,155,Liechtenstein,LIE,200,Exported
+118,156,Lithuania,LTU,200,156,Lithuania,LTU,200,Exported
+119,157,Luxembourg,LUX,200,157,Luxembourg,LUX,200,Exported
+120,158,Malaysia,MYS,200,158,Malaysia,MYS,200,Exported
+121,159,Malta,MLT,200,159,Malta,MLT,200,Exported
+122,160,Marshall Islands,MHL,200,160,Marshall Islands,MHL,200,Exported
+123,163,Monaco,MCO,200,163,Monaco,MCO,200,Exported
+124,164,Montenegro,MNE,200,164,Montenegro,MNE,200,Exported
+125,165,Nauru,NRU,200,165,Nauru,NRU,200,Exported
+126,166,Netherlands,NLD,200,166,Netherlands,NLD,200,Exported
+127,168,New Zealand,NZL,200,168,New Zealand,NZL,200,Exported
+128,169,Niue,NIU,200,169,Niue,NIU,200,Exported
+129,172,Norway,NOR,200,172,Norway,NOR,200,Exported
+130,173,Palau,PLW,200,173,Palau,PLW,200,Exported
+131,175,Poland,POL,200,175,Poland,POL,200,Exported
+132,176,Portugal,PRT,200,176,Portugal,PRT,200,Exported
+133,180,Romania,ROU,200,180,Romania,ROU,200,Exported
+134,184,San Marino,SMR,200,184,San Marino,SMR,200,Exported
+135,185,Serbia,SRB,200,185,Serbia,SRB,200,Exported
+136,186,Singapore,SGP,200,186,Singapore,SGP,200,Exported
+137,187,Slovakia,SVK,200,187,Slovakia,SVK,200,Exported
+138,188,Slovenia,SVN,200,188,Slovenia,SVN,200,Exported
+139,189,South Georgia and the South Sandwich Islands,SGS,200,189,South Georgia and the South Sandwich Islands,SGS,200,Exported
+140,190,Spain,ESP,200,190,Spain,ESP,200,Exported
+141,192,Sweden,SWE,200,192,Sweden,SWE,200,Exported
+142,193,Switzerland,CHE,200,193,Switzerland,CHE,200,Exported
+143,196,Tokelau,TKL,200,196,Tokelau,TKL,200,Exported
+144,197,Tuvalu,TUV,200,197,Tuvalu,TUV,200,Exported
+145,202,Belize,BLZ,200,202,Belize,BLZ,200,Exported

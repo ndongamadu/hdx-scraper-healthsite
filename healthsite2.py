@@ -25,17 +25,45 @@ def getAPIKEY():
     apiFile = yaml.load(open('config/api-key.yml', 'r'))
     return apiFile['cle']
 
+def getHXLResource(configuration, countryName):
+    url_hxl = configuration.read()['base_url'] + configuration.read()['api_version'] + configuration.read()['api_name'] + "?api-key=" + getAPIKEY() + "&tag-format=hxl&output=geojson&flat-properties=true"
+    countryData = {"type": "FeatureCollection", "features": []}
+
+    newData = {"type": "FeatureCollection", "features": []}
+    parameters = {'country': countryName, 'page': 0}
+    nbPage = 1
+    # iterate on page number
+    # get data by page and return newData with all the data
+    while 1:
+        parameters['page'] = nbPage
+        response = requests.get(url_hxl, params=parameters)
+        data = json.loads(response.text)
+        # data = response.json()
+        if(data['features'] == []):
+            break
+        else:
+            for dt in data['features']:
+                newData['features'].append(dt)
+            nbPage += 1
+
+    with open(configuration.read()['data_folder'] + 'healthsites.geojson', 'w') as f:
+        json.dump(newData, f)
+    # write to csv
+    subprocess.call("./geojsonToCSV.sh", shell=True)
+    if(os.path.isfile(configuration.read()['data_folder'] + "healthsites.csv")):
+        shutil.move(configuration.read()['data_folder'] + "healthsites.csv", configuration.read()['data_folder'] + countryName + "_hxl.csv")
+
 
 def getCountryHealthSites(configuration, countryName):
     print('<------- Generating %s dataset -------->' % countryName)
 
     url = configuration.read()['base_url'] + configuration.read()['api_version'] + configuration.read()['api_name'] + "?api-key=" + getAPIKEY() + "&output=geojson&flat-properties=true"
     countryData = {"type": "FeatureCollection", "features": []}
-    try:
-        with open('data/' + countryName + '.geojson', 'r') as f:
-            countryData = json.load(f)
-    except Exception:
-        pass
+    # try:
+    #     with open('data/' + countryName + '.geojson', 'r') as f:
+    #         countryData = json.load(f)
+    # except Exception:
+    #     pass
     newData = {"type": "FeatureCollection", "features": []}
     parameters = {'country': countryName, 'page': 0}
     nbPage = 1
@@ -44,7 +72,6 @@ def getCountryHealthSites(configuration, countryName):
     while 1:
         parameters['page'] = nbPage
         response = requests.get(url, params=parameters)
-        print(response.text)
         data = json.loads(response.text)
         # data = response.json()
         if(data['features'] == []):
@@ -75,29 +102,7 @@ def getCountryHealthSites(configuration, countryName):
     if(os.path.isfile(configuration.read()['data_folder'] + "healthsites.csv")):
         shutil.move(configuration.read()['data_folder'] + "healthsites.csv", configuration.read()['data_folder'] + countryName + ".csv")
 
-# adding hxl tags ?
-    # reader = csv.reader(open(configuration.read()['data_folder']+"healthsites.csv"))
-    # nbRows = 0
-    # with open(configuration.read()['data_folder']+countryName+".csv", 'w') as fcsv:
-    #     writer = csv.writer(fcsv, delimiter=',')
-    #     for raw in reader:
-    #         if nbRows == 0 :
-    #             writer.writerow(raw)
-    #             print(raw)
-    #             writer.writerow(["#geo +lon","#geo +lat","#meta +osm_id","#meta +source_url","#geo +w3w"," ","#loc +name", "#indicator +completeness +pct", "#meta +uuid", "#date +modified", "#meta +source", "#meta +osm_type", "#meta +version", "#indicator +loctype", "#contact +phone", "#contact +address ", "#contact +email","#access +opening_hours",])
-    #             nbRows +=1
-    #         else:
-    #             writer.writerow(raw)
-
-    # ===
-    #rename the csv to the country name
-    # if(os.path.isfile(configuration.read()['data_folder']+"healthsites.csv")):
-    #     shutil.move(configuration.read()['data_folder']+"healthsites.csv", configuration.read()['data_folder']+countryName+".csv")
-    # ==
-    # if(os.path.isfile(configuration.read()['data_folder']+"healthsites.csv")):
-    #     os.remove(configuration.read()['data_folder']+"healthsites.csv")
     print("===== %s files generated ! ======" %countryName)
-# ['X', 'Y', 'osm_id', 'source_url', 'what3words', 'upstream', 'name', 'completeness', 'uuid', 'date_modified', 'source', 'osm_type', 'version', 'type', 'defining-hours', 'activities', 'ownership', 'tags', 'scope-of-service', 'ancillary-services', 'phone', 'notes', 'nature-of-facility', 'physical-address', 'inpatient-service']
 
 
 def hxlator(to_hxl):
@@ -129,6 +134,7 @@ def generate_dataset(configuration, countryName):
     # dataset['title'] = title
     # generating the datasets
     getCountryHealthSites(configuration, countryName)
+    getHXLResource(configuration, countryName)
     # geojson resource
     if(os.path.isfile(configuration.read()['data_folder'] + countryName + '.geojson')):
         rName = countryName + '-healthsites-geojson'
@@ -148,6 +154,17 @@ def generate_dataset(configuration, countryName):
         resource_csv['description'] = countryName + ' healthsites csv'
         resource_csv['format'] = 'csv'
         resource_csv.set_file_to_upload(configuration.read()['data_folder'] + countryName + '.csv')
+
+        resource_csv.check_required_fields(['group', 'package_id'])
+        dataset.add_update_resource(resource_csv)
+
+    # csv hxl resource
+    if(os.path.isfile(configuration.read()['data_folder'] + countryName + '_hxl.csv')):
+        resource_csv = Resource()
+        resource_csv['name'] = countryName + '-healthsites-hxl-csv'
+        resource_csv['description'] = countryName + ' healthsites with hxl tags'
+        resource_csv['format'] = 'csv'
+        resource_csv.set_file_to_upload(configuration.read()['data_folder'] + countryName + '_hxl.csv')
 
         resource_csv.check_required_fields(['group', 'package_id'])
         dataset.add_update_resource(resource_csv)
