@@ -26,6 +26,7 @@ def getAPIKEY():
     return apiFile['cle']
 
 def getHXLResource(configuration, countryName):
+    print('Generating HXL resource')
     url_hxl = configuration.read()['base_url'] + configuration.read()['api_version'] + configuration.read()['api_name'] + "?api-key=" + getAPIKEY() + "&tag-format=hxl&output=geojson&flat-properties=true"
     countryData = {"type": "FeatureCollection", "features": []}
 

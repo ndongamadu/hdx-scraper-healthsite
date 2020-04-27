@@ -21,7 +21,7 @@ import pandas as pd
 from hdx.utilities import *
 # from hdx.data.dataset import Dataset
 logger = logging.getLogger(__name__)
-lookup = 'hdx-scraper-healthsite'
+lookup = 'healthsites'
 
 
 def checkCountryHealthsites(country):
@@ -31,7 +31,7 @@ def checkCountryHealthsites(country):
 
 def csvFile():
     print("Loarding file...")
-    countries = pd.read_csv('countries_new.csv', delimiter=',')
+    countries = pd.read_csv('Countries exports.csv', delimiter=',')
     countries['Status'] = countries['Country'].apply(lambda x: checkCountryHealthsites(x))
 
     country_to_export = countries[countries["Status"] == 200]
@@ -47,24 +47,29 @@ def main():
         for fichier in os.listdir("data"):
             os.remove("data/" + fichier)
 
-    # csvFile()
+    #csvFile()
     countries = pd.read_csv('new_countries_to_export.csv', delimiter=',')
     # countries["Export"] = "to_export"
     for pays in countries.itertuples():
         print(pays[3])
-        dataset = generate_dataset(conf, pays[2])
-        dataset.update_from_yaml()
-        dataset.add_country_location(pays[2])
-        dataset.set_expected_update_frequency('Every month')
-        dataset.add_tag('health facilities')
-        datex = time.strftime("%x")
-        dataset.set_dataset_date(datex)
-        dataset.set_subnational(True)
-        dataset.create_in_hdx()
+        try:
+            dataset = generate_dataset(conf, pays[2])
+            dataset.update_from_yaml()
+            dataset.add_country_location(pays[3])
+            dataset.set_expected_update_frequency('Every month')
+            dataset.add_tag('health facilities')
+            datex = time.strftime("%x")
+            dataset.set_dataset_date(datex)
+            dataset.set_subnational(True)
+            dataset.create_in_hdx()
+        except Exception as e:
+            print(e)
+            continue
+
 
 
 
 if __name__ == '__main__':
-    # facade(main, hdx_site='test', user_agent=('healthsites'), project_config_yaml=join('config', 'project_configuration.yml'))
+    facade(main, hdx_site='test', user_agent=lookup, project_config_yaml=join('config', 'project_configuration.yml'))
 
-    facade(main, hdx_site='prod', user_agent_config_yaml=join(expanduser('~'), '.useragent.yml'), user_agent_lookup=lookup, project_config_yaml=join('config', 'project_configuration.yml'))
+    # facade(main, hdx_site='test', user_agent_lookup=lookup, project_config_yaml=join('config', 'project_configuration.yml'))
