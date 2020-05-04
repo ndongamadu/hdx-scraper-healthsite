@@ -21,7 +21,7 @@ import pandas as pd
 from hdx.utilities import *
 # from hdx.data.dataset import Dataset
 logger = logging.getLogger(__name__)
-lookup = 'healthsites'
+lookup = 'hdx-scraper-healthsite'
 
 
 def checkCountryHealthsites(country):
@@ -70,6 +70,5 @@ def main():
 
 
 if __name__ == '__main__':
-    facade(main, hdx_site='test', user_agent=lookup, project_config_yaml=join('config', 'project_configuration.yml'))
 
-    # facade(main, hdx_site='test', user_agent_lookup=lookup, project_config_yaml=join('config', 'project_configuration.yml'))
+    facade(main, hdx_site='test', user_agent_config_yaml=join(expanduser('~'), '.useragent.yml'), user_agent_lookup=lookup, project_config_yaml=join('config', 'project_configuration.yml'))
