@@ -12,3 +12,6 @@ loaData.py
 healthsite.py
 errors.log
 config/api-key.yml
+
+.vscode
+.idea/
